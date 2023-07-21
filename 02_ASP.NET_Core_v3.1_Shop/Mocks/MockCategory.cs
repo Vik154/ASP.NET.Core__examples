@@ -1,19 +1,23 @@
-﻿using Shop.Data.Interfaces;
-using Shop.Data.Model;
-namespace Shop.Data.Mocks;
+﻿// Реализация интерфейса ICars
+using Shop.Models;
+using Shop.Interfaces;
+using System.Collections.Generic;
 
-public class MockCategory : ICarsCategory {
+namespace Shop.Mocks {
 
-    public IEnumerable<Category> AllCategories {
-        get {
-            return new List<Category> {
+    public class MockCategory : ICarsCategory {
+
+        public IEnumerable<Category> AllCategories {
+            get {
+                return new List<Category> {
                 new Category {
-                    categoryName = "Электромобили", 
+                    categoryName = "Электромобили",
                     desc = "Современный вид транспорта" },
                 new Category {
-                    categoryName = "Бензиновые авто", 
+                    categoryName = "Бензиновые авто",
                     desc = "Машины с двигателем внутреннего сгорания"}
-            };
+                };
+            }
         }
     }
 }
