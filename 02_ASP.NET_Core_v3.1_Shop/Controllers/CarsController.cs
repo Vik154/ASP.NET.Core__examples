@@ -16,6 +16,7 @@ namespace Shop.Controllers {
 
         // Результат возвращается в виде html странички
         public ViewResult List() {
+            ViewBag.Category = "Some new";
             var cars = _allCars.Cars;
             return View(cars);
         } 

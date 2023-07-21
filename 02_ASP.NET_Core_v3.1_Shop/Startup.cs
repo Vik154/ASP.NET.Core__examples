@@ -26,8 +26,9 @@ namespace Shop {
             app.UseDeveloperExceptionPage();    // Отображение страницы ошибок
             app.UseStatusCodePages();           // Отображение кодов ошибок
             app.UseStaticFiles();               // Отображение css картинок и пр.
-            app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
+           // app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
 
+            /*
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
@@ -39,6 +40,7 @@ namespace Shop {
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
+            */
         }
     }
 }
