@@ -1,9 +1,13 @@
-﻿namespace Shop.Data.Model;
+﻿// Реализация класса отвечающего за хранение категории 
+using System.Collections.Generic;
 
-public class Category {
+namespace Shop.Models {
 
-    public int       Id { get; set; }
-    public string    categoryName { get; set; }
-    public string    desc { get; set; }
-    public List<Car> cars { get; set; } 
+    public class Category {
+
+        public int Id { get; set; }
+        public string categoryName { get; set; }
+        public string desc { get; set; }
+        public List<Car> cars { get; set; }
+    }
 }
