@@ -1,4 +1,4 @@
-﻿// Реализация интерфейса ICars
+﻿// Реализация интерфейса ICarsCategory
 using Shop.Models;
 using Shop.Interfaces;
 using System.Collections.Generic;
