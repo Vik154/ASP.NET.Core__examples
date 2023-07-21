@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Логика контроллера
+using Microsoft.AspNetCore.Mvc;
 using Shop.Interfaces;
 
 namespace Shop.Controllers {
