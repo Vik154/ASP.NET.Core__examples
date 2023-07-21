@@ -55,8 +55,15 @@ namespace WebAppCoreV3 {
                 options.SlidingExpiration = true;
             });
 
+            // Настройка политики авторизации для Admin area
+            services.AddAuthorization((x) => {
+                x.AddPolicy("AdminArea", (policy) => { policy.RequireRole("admin"); });
+            });
+
             // Добавляем поддержку контроллеров и представлений (MVC)
-            services.AddControllersWithViews()
+            services.AddControllersWithViews((x) => {
+                x.Conventions.Add(new AdminAreaAuthorization("Admin", "AdminArea"));
+            }) 
                 // Выставляем совместимость с версией ap.net core 3.0
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddSessionStateTempDataProvider();
         }
