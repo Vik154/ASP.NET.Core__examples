@@ -1,15 +1,19 @@
-﻿using Shop.Data.Interfaces;
-using Shop.Data.Model;
+﻿// Реализация интерфейса IAllCars
+using Shop.Models;
+using Shop.Interfaces;
+using System.Collections.Generic;
+using System;
+using System.Linq;
 
-namespace Shop.Data.Mocks;
+namespace Shop.Mocks {
 
-public class MockCars : IAllCars {
+    public class MockCars : IAllCars {
 
-    private readonly ICarsCategory carsCategory = new MockCategory();
+        private readonly ICarsCategory carsCategory = new MockCategory();
 
-    public IEnumerable<Car> Cars {
-        get {
-            return new List<Car> {
+        public IEnumerable<Car> Cars {
+            get {
+                return new List<Car> {
                 new Car {
                     Name = "Tesla",
                     shortDesc = "Быстрый автомобиль",
@@ -18,8 +22,9 @@ public class MockCars : IAllCars {
                     price = 45000,
                     isFavourite = true,
                     available = true,
-                    Category = carsCategory.AllCategories.First()                    
+                    Category = carsCategory.AllCategories.First()
                 },
+
                 new Car {
                     Name = "Ford fiesta",
                     shortDesc = "Тихий",
@@ -31,11 +36,13 @@ public class MockCars : IAllCars {
                     Category = carsCategory.AllCategories.Last()
                 }
             };
+            }
         }
-    }
-    IEnumerable<Car> IAllCars.getFavCars { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-    public Car getObjectCar(int carId) {
-        throw new NotImplementedException();
+        IEnumerable<Car> IAllCars.getFavCars { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public Car getObjectCar(int carId) {
+            throw new NotImplementedException();
+        }
     }
 }
