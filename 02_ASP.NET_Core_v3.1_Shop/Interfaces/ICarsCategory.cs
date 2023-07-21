@@ -1,6 +1,10 @@
-﻿using Shop.Data.Model;
-namespace Shop.Data.Interfaces;
+﻿// Получение всех категорий из модели Category
+using Shop.Models;
+using System.Collections.Generic;
 
-public interface ICarsCategory {
-    IEnumerable<Category> AllCategories { get; }
+namespace Shop.Interfaces {
+
+    public interface ICarsCategory {
+        IEnumerable<Category> AllCategories { get; }
+    }
 }
