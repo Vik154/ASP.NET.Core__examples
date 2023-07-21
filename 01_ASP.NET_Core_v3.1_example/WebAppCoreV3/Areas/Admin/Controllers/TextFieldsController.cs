@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebAppCoreV3.Domain.Entities;
 using WebAppCoreV3.Domain;
+using WebAppCoreV3.Service;
 
 namespace WebAppCoreV3.Areas.Admin.Controllers {
 
     [Area("Admin")]
     public class TextFieldsController : Controller {
+
         private readonly DataManager dataManager;
         public TextFieldsController(DataManager dataManager) {
             this.dataManager = dataManager;

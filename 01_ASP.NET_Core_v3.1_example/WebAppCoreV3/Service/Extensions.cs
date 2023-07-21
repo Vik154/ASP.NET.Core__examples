@@ -1,4 +1,6 @@
 ﻿namespace WebAppCoreV3.Service {
-    public class Extensions {
+
+    public static class Extensions {
+        public static string CutController(this string str) => str.Replace("Controller", "");
     }
 }
