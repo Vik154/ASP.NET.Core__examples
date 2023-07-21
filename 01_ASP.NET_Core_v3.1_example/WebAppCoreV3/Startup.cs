@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppCoreV3.Domain;
+using WebAppCoreV3.Domain.Repositories.Abstract;
+using WebAppCoreV3.Domain.Repositories.EntityFramework;
 using WebAppCoreV3.Service;
 
 namespace WebAppCoreV3 {
@@ -22,6 +28,33 @@ namespace WebAppCoreV3 {
             // Подключаем конфиг из appsetting.json
             Configuration.Bind("Project", new Config());
 
+            // Подключаем нужный функционал приложения в качестве сервисов
+            services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
+            services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
+            services.AddTransient<DataManager>();
+
+            // Подключаем контекст БД
+            services.AddDbContext<AppDbContext>((context) => context.UseSqlServer(Config.ConnectionString));
+
+            // Настраиваем identity систему
+            services.AddIdentity<IdentityUser, IdentityRole>((opts) => {
+                opts.User.RequireUniqueEmail = true;
+                opts.Password.RequiredLength = 6;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+            // Настраиваем authentication cooke
+            services.ConfigureApplicationCookie((options) => {
+                options.Cookie.Name = "myCompanyAuth";
+                options.Cookie.HttpOnly = true;
+                options.LoginPath = "/account/login";
+                options.AccessDeniedPath = "/account/accessdenied";
+                options.SlidingExpiration = true;
+            });
+
             // Добавляем поддержку контроллеров и представлений (MVC)
             services.AddControllersWithViews()
                 // Выставляем совместимость с версией ap.net core 3.0
@@ -34,10 +67,16 @@ namespace WebAppCoreV3 {
             // Подробная информация об ошибках в процессе разработки
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
             
-            app.UseRouting();
-
             // Подключение поддержки статичных файлов в приложении (css, js)
             app.UseStaticFiles();
+
+            // Подключение системы маршрутизации
+            app.UseRouting();
+
+            // Подключение аутентификации и авторизации
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             // Регистрация нужных маршрутов
             app.UseEndpoints( (endpoints) => {
