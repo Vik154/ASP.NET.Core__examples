@@ -1,5 +1,6 @@
-﻿@using Shop.Models         @*Подключение модели*@
-@model IEnumerable<Car>    // @*Конкретная модель которая будет использоваться*@
+﻿@using Shop.ViewModels
+@using Shop.Controllers
+@model CarsListViewModel
 
 @{
     Layout = null;
@@ -13,9 +14,9 @@
 </head>
 <body>
     <h1>Все автомобили</h1>
-    <h3>@ViewBag.Category</h3>
+    <h3>@Model.CurrCategory</h3>
     @{
-        foreach(var car in Model) {
+        foreach(var car in Model.AllCars) {
             <div>
                 <h2>Модель: @car.Name</h2>
                 <p>Цена: @car.price.ToString("c")</p>

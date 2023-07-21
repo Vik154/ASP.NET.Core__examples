@@ -1,6 +1,7 @@
 ﻿// Логика контроллера
 using Microsoft.AspNetCore.Mvc;
 using Shop.Interfaces;
+using Shop.ViewModels;
 
 namespace Shop.Controllers {
    
@@ -16,9 +17,10 @@ namespace Shop.Controllers {
 
         // Результат возвращается в виде html странички
         public ViewResult List() {
-            ViewBag.Category = "Some new";
-            var cars = _allCars.Cars;
-            return View(cars);
+            CarsListViewModel model = new CarsListViewModel();
+            model.AllCars = _allCars.Cars;
+            model.CurrCategory = "Автомобили";
+            return View(model);
         } 
     }
 }
