@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shop.Interfaces;
+using Shop.Mocks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,10 @@ namespace Shop {
     public class Startup {
 
         public void ConfigureServices(IServiceCollection services) {
+            // Связывание между собой класса и интерфейса
+            services.AddTransient<IAllCars, MockCars>();
+            services.AddTransient<ICarsCategory, MockCategory>();
+
             services.AddMvc();
         }
 
