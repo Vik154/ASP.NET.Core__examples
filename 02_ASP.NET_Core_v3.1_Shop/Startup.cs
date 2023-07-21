@@ -10,13 +10,18 @@ using System.Threading.Tasks;
 
 namespace _02_ASP.NET_Core_v3._1_Shop {
     public class Startup {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
         public void ConfigureServices(IServiceCollection services) {
+            services.AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+
+            app.UseDeveloperExceptionPage();    // Отображение страницы ошибок
+            app.UseStatusCodePages();           // Отображение кодов ошибок
+            app.UseStaticFiles();               // Отображение css картинок и пр.
+            app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
+
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
