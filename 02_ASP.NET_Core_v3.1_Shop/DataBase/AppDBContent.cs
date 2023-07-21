@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// Класс для работы с базой данных
+using Microsoft.EntityFrameworkCore;
 
 namespace Shop.DataBase {
     
