@@ -17,6 +17,7 @@ namespace Shop.Controllers {
 
         // Результат возвращается в виде html странички
         public ViewResult List() {
+            ViewBag.Title = "Страница с автомобилями";
             CarsListViewModel model = new CarsListViewModel();
             model.AllCars = _allCars.Cars;
             model.CurrCategory = "Автомобили";
