@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _02_ASP.NET_Core_v3._1_Shop {
+namespace Shop {
     public class Startup {
 
         public void ConfigureServices(IServiceCollection services) {

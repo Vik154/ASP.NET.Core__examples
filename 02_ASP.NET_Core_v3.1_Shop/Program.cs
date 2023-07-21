@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _02_ASP.NET_Core_v3._1_Shop {
+namespace Shop {
     public class Program {
         public static void Main(string[] args) {
             CreateHostBuilder(args).Build().Run();

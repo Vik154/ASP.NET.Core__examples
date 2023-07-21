@@ -5,4 +5,8 @@
     <RootNamespace>_02_ASP.NET_Core_v3._1_Shop</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
