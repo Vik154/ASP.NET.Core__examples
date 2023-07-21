@@ -22,6 +22,7 @@ namespace WebAppCoreV3.Areas.Admin.Controllers {
             var entity = id == default ? new ServiceItem() : dataManager.ServiceItems.GetServiceItemById(id);
             return View(entity);
         }
+
         [HttpPost]
         public IActionResult Edit(ServiceItem model, IFormFile titleImageFile) {
             if (ModelState.IsValid) {
