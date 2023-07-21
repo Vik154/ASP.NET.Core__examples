@@ -80,6 +80,8 @@ namespace WebAppCoreV3 {
 
             // Регистрация нужных маршрутов
             app.UseEndpoints( (endpoints) => {
+                // Маршрут для администратора
+                endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
