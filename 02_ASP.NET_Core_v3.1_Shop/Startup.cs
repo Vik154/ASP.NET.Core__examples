@@ -1,19 +1,29 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Shop.DataBase;
 using Shop.Interfaces;
 using Shop.Mocks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Shop {
     public class Startup {
 
+        private IConfigurationRoot _confString;
+        
+        public Startup(IHostingEnvironment hosting) {
+            _confString = new ConfigurationBuilder()
+                .SetBasePath(hosting.ContentRootPath)
+                .AddJsonFile("dbsettings.json")
+                .Build();
+        }
+        
         public void ConfigureServices(IServiceCollection services) {
+            services.AddDbContext<AppDBContent>((options) => {
+                options.UseSqlServer(_confString.GetConnectionString("DefaultConnection"));
+            });
             // Связывание между собой класса и интерфейса
             services.AddTransient<IAllCars, MockCars>();
             services.AddTransient<ICarsCategory, MockCategory>();
