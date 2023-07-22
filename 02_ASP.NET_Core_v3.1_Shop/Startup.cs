@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Shop.DataBase;
 using Shop.Interfaces;
 using Shop.Mocks;
+using Shop.Models;
 using Shop.Repository;
 
 namespace Shop {
@@ -32,22 +33,21 @@ namespace Shop {
             services.AddTransient<IAllCars, CarRepository>();
             services.AddTransient<ICarsCategory, CategoryRepository>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShopCart.GetCart(sp));
+
             services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
 
-            if (env.IsDevelopment()) {
-                app.UseDeveloperExceptionPage();
-            }
-            app.UseStaticFiles();               // Отображение css картинок и пр.
-            app.UseRouting();
-
-            app.UseCookiePolicy();
-
             app.UseDeveloperExceptionPage();    // Отображение страницы ошибок
             app.UseStatusCodePages();           // Отображение кодов ошибок
-            // app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
+            app.UseStaticFiles();               // Отображение css картинок и пр.
+            app.UseSession();
+           // app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
 
             using (var scope = app.ApplicationServices.CreateScope()) {
                 AppDBContent content = 
@@ -57,12 +57,6 @@ namespace Shop {
                 
                 DBObjects.Initial(content);
             }
-            
-            app.UseEndpoints(endpoints => {
-                endpoints.MapGet("/", async context => {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
             
         }
     }
