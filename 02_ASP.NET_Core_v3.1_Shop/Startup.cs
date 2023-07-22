@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Shop.DataBase;
 using Shop.Interfaces;
 using Shop.Mocks;
-
+using Shop.Repository;
 
 namespace Shop {
     public class Startup {
@@ -25,8 +25,8 @@ namespace Shop {
                 options.UseSqlServer(_confString.GetConnectionString("DefaultConnection"));
             });
             // Связывание между собой класса и интерфейса
-            services.AddTransient<IAllCars, MockCars>();
-            services.AddTransient<ICarsCategory, MockCategory>();
+            services.AddTransient<IAllCars, CarRepository>();
+            services.AddTransient<ICarsCategory, CategoryRepository>();
 
             services.AddMvc();
         }
