@@ -5,7 +5,7 @@
 <div class="row mt-5 mb-2">
     @{
         foreach (Car car in Model.favCars) {
-            @Html.PartialAsync("AllCars", car)
+            @Html.Partial("AllCars", car)
         }
     }
 </div>
