@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+п»їusing Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +16,6 @@ namespace Shop {
 
         private IConfigurationRoot _confString;
 
-
         public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hosting) {
             _confString = new ConfigurationBuilder()
                 .SetBasePath(hosting.ContentRootPath)
@@ -24,12 +23,11 @@ namespace Shop {
                 .Build();
         }
 
-
         public void ConfigureServices(IServiceCollection services) {
             services.AddDbContext<AppDBContent>((options) => {
                 options.UseSqlServer(_confString.GetConnectionString("DefaultConnection"));
             });
-            // Связывание между собой класса и интерфейса
+            // РЎРІСЏР·С‹РІР°РЅРёРµ РјРµР¶РґСѓ СЃРѕР±РѕР№ РєР»Р°СЃСЃР° Рё РёРЅС‚РµСЂС„РµР№СЃР°
             services.AddTransient<IAllCars, CarRepository>();
             services.AddTransient<ICarsCategory, CategoryRepository>();
 
@@ -42,17 +40,14 @@ namespace Shop {
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            if (env.IsDevelopment()) {
+            if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
-            }
-            else {
+            else
                 app.UseExceptionHandler("/Home/Error");
-            }
-            app.UseStatusCodePages();           // Отображение кодов ошибок
+            app.UseStatusCodePages();           // РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РєРѕРґРѕРІ РѕС€РёР±РѕРє
             app.UseRouting();
-            app.UseStaticFiles();               // Отображение css картинок и пр.
+            app.UseStaticFiles();               // РћС‚РѕР±СЂР°Р¶РµРЅРёРµ css РєР°СЂС‚РёРЅРѕРє Рё РїСЂ.
             app.UseSession();
-            // app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
 
             using (var scope = app.ApplicationServices.CreateScope()) {
                 AppDBContent content =
