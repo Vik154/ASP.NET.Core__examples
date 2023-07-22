@@ -38,6 +38,16 @@ namespace Shop {
             app.UseStaticFiles();               // Отображение css картинок и пр.
             // app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
 
+            using (var scope = app.ApplicationServices.CreateScope()) {
+                AppDBContent content = 
+                    scope.
+                    ServiceProvider.
+                    GetRequiredService<AppDBContent>();
+                
+                DBObjects.Initial(content);
+            }
+
+
             /*
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
