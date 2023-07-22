@@ -15,15 +15,15 @@ namespace Shop {
     public class Startup {
 
         private IConfigurationRoot _confString;
-        
-        
+
+
         public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hosting) {
             _confString = new ConfigurationBuilder()
                 .SetBasePath(hosting.ContentRootPath)
                 .AddJsonFile("dbsettings.json")
                 .Build();
         }
-        
+
 
         public void ConfigureServices(IServiceCollection services) {
             services.AddDbContext<AppDBContent>((options) => {
@@ -42,22 +42,40 @@ namespace Shop {
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-
-            app.UseDeveloperExceptionPage();    // Отображение страницы ошибок
+            if (env.IsDevelopment()) {
+                app.UseDeveloperExceptionPage();
+            }
+            else {
+                app.UseExceptionHandler("/Home/Error");
+            }
             app.UseStatusCodePages();           // Отображение кодов ошибок
+            app.UseRouting();
             app.UseStaticFiles();               // Отображение css картинок и пр.
             app.UseSession();
-           // app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
+            // app.UseMvcWithDefaultRoute();       // Отслеживание url-адреса
 
             using (var scope = app.ApplicationServices.CreateScope()) {
-                AppDBContent content = 
+                AppDBContent content =
                     scope.
                     ServiceProvider.
                     GetRequiredService<AppDBContent>();
-                
+
                 DBObjects.Initial(content);
             }
-            
+
+            app.Use(async (context, next) => {
+                await next();
+                if (context.Response.StatusCode == 404) {
+                    context.Request.Path = "/Home";
+                    await next();
+                }
+            });
+
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
