@@ -12,7 +12,7 @@ namespace Shop.Controllers {
         private IAllCars _carRep;
         private readonly ShopCart _shopCart;
 
-        public ShopCartController(CarRepository car, ShopCart shop) {
+        public ShopCartController(IAllCars car, ShopCart shop) {
             _carRep = car;
             _shopCart = shop;
         }
