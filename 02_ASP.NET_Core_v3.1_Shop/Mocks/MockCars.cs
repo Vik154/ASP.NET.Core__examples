@@ -39,7 +39,7 @@ namespace Shop.Mocks {
             }
         }
 
-        IEnumerable<Car> IAllCars.getFavCars { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        IEnumerable<Car> IAllCars.getFavCars { get => throw new NotImplementedException(); }
 
         public Car getObjectCar(int carId) {
             throw new NotImplementedException();
