@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shop.Interfaces;
 using Shop.Models;
 using Shop.Repository;
 using Shop.ViewModels;
@@ -8,7 +9,7 @@ namespace Shop.Controllers {
 
     public class ShopCartController : Controller {
         
-        private readonly CarRepository _carRep;
+        private IAllCars _carRep;
         private readonly ShopCart _shopCart;
 
         public ShopCartController(CarRepository car, ShopCart shop) {
