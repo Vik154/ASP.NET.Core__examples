@@ -1,4 +1,9 @@
-﻿namespace _02_ASP.NET_Core_v3._1_Shop.Models {
+﻿namespace Shop.Models {
+    
     public class ShopCartItem {
+        public int id { get; set; }
+        public Car car { get; set; }
+        public int price { get; set; }
+        public string ShopCartId { get; set; }
     }
 }
