@@ -22,9 +22,10 @@ namespace MSSQLNET {
             // Открытие подключения к БД
             sqlConnection.Open();
 
-            // Проверка подключения к БД
+            /* Проверка подключения к БД
             if (sqlConnection.State == ConnectionState.Open)
                 MessageBox.Show("Подключение установлено!");
+            */
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e) {
@@ -53,6 +54,17 @@ namespace MSSQLNET {
             command.Parameters.AddWithValue("Phone", textBox3.Text);
             command.Parameters.AddWithValue("Email", textBox2.Text);
             MessageBox.Show(command.ExecuteNonQuery().ToString());
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(
+                textBox7.Text,
+                // "SELECT * FROM Products WHERE UnitPrice > 100",
+                sqlConnection
+            );
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet);
+            dataGridView1.DataSource = dataSet.Tables[0];
         }
     }
 }
