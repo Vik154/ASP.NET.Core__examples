@@ -25,7 +25,7 @@ namespace Shop.Models {
             return new ShopCart(context) { ShopCartId = shopCartId };
         }
         
-        public void AddToCart(Car car, int amount) {
+        public void AddToCart(Car car) {
             content.ShopCartItem.Add(new ShopCartItem {
                 ShopCartId = ShopCartId,
                 car = car,
