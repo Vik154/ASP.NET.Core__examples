@@ -3,13 +3,8 @@
 
 <div class="row mt-5 mb-2">
     @{
-        foreach (var car in Model.AllCars) {
-            <div class="col-lg-4">
-                <img class="img-thumbnail" src="@car.img" alt="@car.Name">
-                <h2>@car.Name</h2>
-                <p>Цена: @car.price.ToString("c")</p>
-                <p><a class="btn btn-warning" href="#">Подробнее</a></p>
-            </div>
+        foreach (Car car in Model.AllCars) {
+            @Html.PartialAsync("AllCars", car)
         }
     }
 </div>
