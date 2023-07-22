@@ -26,5 +26,33 @@ namespace MSSQLNET {
             if (sqlConnection.State == ConnectionState.Open)
                 MessageBox.Show("Подключение установлено!");
         }
+
+        private void textBox4_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            // Пример создание команды из С# кода
+            /*
+            SqlCommand cmd = new SqlCommand(
+                $@"INSERT INTO [Students] (Name, Surname, Birthday)
+                VALUES (N'{textBox1.Text}', N'{textBox6.Text}', '{textBox5.Text}')", 
+                sqlConnection); 
+            */
+            SqlCommand command = new SqlCommand(
+                "INSERT INTO [Students] (Name, Surname, Birthday, Adress, Phone, Email) " +
+                "VALUES (@Name, @Surname, @Birthday, @Adress, @Phone, @Email)",
+                sqlConnection);
+
+            DateTime date = DateTime.Parse(textBox5.Text);
+
+            command.Parameters.AddWithValue("Name", textBox1.Text);
+            command.Parameters.AddWithValue("Surname", textBox6.Text);
+            command.Parameters.AddWithValue("Birthday", $"{date.Month}/{date.Day}/{date.Year}");
+            command.Parameters.AddWithValue("Adress", textBox4.Text);
+            command.Parameters.AddWithValue("Phone", textBox3.Text);
+            command.Parameters.AddWithValue("Email", textBox2.Text);
+            MessageBox.Show(command.ExecuteNonQuery().ToString());
+        }
     }
 }
