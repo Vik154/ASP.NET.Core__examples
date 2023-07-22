@@ -66,5 +66,35 @@ namespace MSSQLNET {
             dataAdapter.Fill(dataSet);
             dataGridView1.DataSource = dataSet.Tables[0];
         }
+
+        private void button3_Click(object sender, EventArgs e) {
+            listView1.Items.Clear();
+            SqlDataReader dataReader = null;
+
+            try {
+                SqlCommand sqlCommand = new SqlCommand(
+                    "SELECT ProductName, QuantityPerUnit, UnitPrice FROM Products",
+                    sqlConnection);
+                dataReader = sqlCommand.ExecuteReader();
+                ListViewItem item = null;
+
+                while (dataReader.Read()) {
+                    item = new ListViewItem(new string[] {
+                        Convert.ToString(dataReader["ProductName"]),
+                        Convert.ToString(dataReader["QuantityPerUnit"]),
+                        Convert.ToString(dataReader["UnitPrice"])
+                    });
+                    listView1.Items.Add(item);
+                }
+            }
+            catch (Exception exp) {
+                MessageBox.Show(exp.Message);
+            }
+            finally {
+                if (dataReader != null && !dataReader.IsClosed) { 
+                    dataReader.Close(); 
+                }
+            }
+        }
     }
 }
