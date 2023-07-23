@@ -20,7 +20,10 @@ class Program {
         // await Example_2();
 
         // Пример 3 "Отправка заголовков"
-        await Example_3();
+        // await Example_3();
+
+        // Пример 3.1 Установка заголовка для запроса
+        await Example_3_1();
     }
 
     // EX-1.0 GetFromJsonAsync() - отправляет запрос GET и возвращает десериализованные объекты из JSON
@@ -67,6 +70,19 @@ class Program {
         Console.WriteLine(responseText);
     }
 
+    // Пример 3.1 Установка заголовка для запроса
+    static async Task Example_3_1() {
+        // адрес сервера
+        var serverAddress = "https://localhost:7219";
+        using var request = new HttpRequestMessage(HttpMethod.Get, serverAddress);
+        // устанавливаем оба заголовка
+        request.Headers.Add("User-Agent", "Mozilla Failfox 5.6");
+        request.Headers.Add("SecreteCode", "hello");
+
+        using var response = await httpClient.SendAsync(request);
+        var responseText = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseText);
+    }
 }
 
 // для успешного ответа
