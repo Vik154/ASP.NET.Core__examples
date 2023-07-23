@@ -6,12 +6,21 @@ namespace BaseServer;
 
 public class Program {
     public static void Main(string[] args) {
+        RunApp();
+    }
+
+    // Точка входа
+    static void RunApp() {
         // Пример 1
         // Example_1();
         // Пример 2
         // Example_2();
         // Пример 3 "Отправка заголовков"
-        Example_3();
+        // Example_3();
+        // Пример 4 "Отправка текста"
+        // Example_4();
+        // Пример 5 Отправка json с помощью HttpClient
+        Example_5();
     }
 
     // Пример 1
@@ -58,7 +67,41 @@ public class Program {
         });
         app.Run();
     }
+
+    // Пример 4 "Отправка текста"
+    static void Example_4() {
+        var builder = WebApplication.CreateBuilder();
+        var app = builder.Build();
+
+        app.MapPost("/data", async (HttpContext httpContext) => {
+            using StreamReader reader = new StreamReader(httpContext.Request.Body);
+            string name = await reader.ReadToEndAsync();
+            return $"Получены данные: {name}";
+        });
+        app.Run();
+    }
+
+    // Пример 5 Отправка json с помощью HttpClient
+    static void Example_5() {
+        var builder = WebApplication.CreateBuilder();
+        var app = builder.Build();
+
+        app.MapPost("/create", (Person2 person) => {
+            // устанавливает id у объекта Person
+            person.Id = Guid.NewGuid().ToString();
+            // отправляем обратно объект Person
+            return person;
+        });
+        app.Run();
+    }
 }
 
-
+// Примеры 1 - 4
 record Person(string Name, int Age);
+
+// Пример 5
+class Person2 {
+    public string Id { get; set; } = "";
+    public string Name { get; set; } = "";
+    public int Age { get; set; }
+}

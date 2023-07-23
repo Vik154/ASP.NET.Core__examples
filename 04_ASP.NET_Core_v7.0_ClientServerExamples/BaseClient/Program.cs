@@ -4,12 +4,14 @@ using System.Net.Http.Json; // пространство имен метода Ge
 
 namespace BaseClient;
 
-
 class Program {
-
-    static HttpClient httpClient = new HttpClient();
-    
+    // Main
     static async Task Main() {
+        await RunApp();
+    }
+
+    // Точка входа
+    static async Task RunApp() {
         // Прмер 1, работа метода GetFromJsonAsync()
         // await ExampleGetFromJsonAsync();
 
@@ -26,9 +28,17 @@ class Program {
         // await Example_3_1();
 
         // Пример 3.2 Получение заголовков
-        await Example_3_2();
+        // await Example_3_2();
+
+        // Пример 4 "Отправка строки"
+        // await Example_4();
+
+        // Пример 5 "Отправка json с помощью HttpClient"
+        await Example_5();
     }
 
+    static HttpClient httpClient = new HttpClient();
+    
     // EX-1.0 GetFromJsonAsync() - отправляет запрос GET и возвращает десериализованные объекты из JSON
     static async Task ExampleGetFromJsonAsync() {
         object? data = await httpClient.GetFromJsonAsync("https://localhost:7219/", typeof(Person));
@@ -91,12 +101,48 @@ class Program {
     static async Task Example_3_2() {
         var serverAddress = "https://localhost:7219";
         using var response = await httpClient.GetAsync(serverAddress);
-        var dateValues = response.Headers.GetValues("Date");
-        Console.WriteLine(dateValues.FirstOrDefault());
+        response.Headers.TryGetValues("date", out var dateValues);
+
+        Console.WriteLine(dateValues?.FirstOrDefault());
     }
+
+    // Пример 4 "Отправка строки"
+    static async Task Example_4() {
+        StringContent content = new StringContent("Tom");
+        // определяем данные запроса
+        using var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7219/data");
+        // установка отправляемого содержимого
+        request.Content = content;
+        // отправляем запрос
+        using var response = await httpClient.SendAsync(request);
+        // получаем ответ
+        string responseText = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseText);
+    }
+
+    // Пример 5
+    static async Task Example_5() {
+        // отправляемый объект 
+        Person2 tom = new Person2 { Name = "Tom", Age = 38 };
+        // создаем JsonContent
+        JsonContent content = JsonContent.Create(tom);
+        // отправляем запрос
+        using var response = await httpClient.PostAsync("https://localhost:7219/create", content);
+        Person2? person = await response.Content.ReadFromJsonAsync<Person2>();
+        Console.WriteLine($"{person?.Id} - {person?.Name}");
+    }
+
 }
 
-// для успешного ответа
+// для успешного ответа примеры 1 - 4
 record Person(string Name, int Age);
+
 // для ошибок
 record Error(string Message);
+
+// Пример 5
+class Person2 {
+    public string Id { get; set; } = "";
+    public string Name { get; set; } = "";
+    public int Age { get; set; }
+}
