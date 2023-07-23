@@ -23,7 +23,10 @@ class Program {
         // await Example_3();
 
         // Пример 3.1 Установка заголовка для запроса
-        await Example_3_1();
+        // await Example_3_1();
+
+        // Пример 3.2 Получение заголовков
+        await Example_3_2();
     }
 
     // EX-1.0 GetFromJsonAsync() - отправляет запрос GET и возвращает десериализованные объекты из JSON
@@ -82,6 +85,14 @@ class Program {
         using var response = await httpClient.SendAsync(request);
         var responseText = await response.Content.ReadAsStringAsync();
         Console.WriteLine(responseText);
+    }
+
+    // Пример 3.2 Получение заголовков
+    static async Task Example_3_2() {
+        var serverAddress = "https://localhost:7219";
+        using var response = await httpClient.GetAsync(serverAddress);
+        var dateValues = response.Headers.GetValues("Date");
+        Console.WriteLine(dateValues.FirstOrDefault());
     }
 }
 
