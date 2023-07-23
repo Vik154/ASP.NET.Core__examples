@@ -20,7 +20,9 @@ public class Program {
         // Пример 4 "Отправка текста"
         // Example_4();
         // Пример 5 Отправка json с помощью HttpClient
-        Example_5();
+        // Example_5();
+        // Пример 6
+        Example_6();
     }
 
     // Пример 1
@@ -94,6 +96,70 @@ public class Program {
         });
         app.Run();
     }
+
+    // Пример 6 Взаимодействие HttpClient с Web API
+    static void Example_6() {
+        // для генерации id объектов
+        int id = 1;
+
+        // начальные данные
+        List<Person3> users = new List<Person3> {
+            new() { Id = id++, Name = "Tom", Age = 37 },
+            new() { Id = id++, Name = "Bob", Age = 41 },
+            new() { Id = id++, Name = "Sam", Age = 24 }
+        };
+
+        var builder = WebApplication.CreateBuilder();
+        var app = builder.Build();
+
+        app.MapGet("/api/users", () => users);
+
+        app.MapGet("/api/users/{id}", (int id) => {
+            // получаем пользователя по id
+            Person3? user = users.FirstOrDefault(u => u.Id == id);
+            // если не найден, отправляем статусный код и сообщение об ошибке
+            if (user == null) return Results.NotFound(new { message = "Пользователь не найден" });
+
+            // если пользователь найден, отправляем его
+            return Results.Json(user);
+        });
+
+        app.MapDelete("/api/users/{id}", (int id) => {
+            // получаем пользователя по id
+            Person3? user = users.FirstOrDefault(u => u.Id == id);
+
+            // если не найден, отправляем статусный код и сообщение об ошибке
+            if (user == null) return Results.NotFound(new { message = "Пользователь не найден" });
+
+            // если пользователь найден, удаляем его
+            users.Remove(user);
+            return Results.Json(user);
+        });
+
+        app.MapPost("/api/users", (Person3 user) => {
+
+            // устанавливаем id для нового пользователя
+            user.Id = id++;
+            // добавляем пользователя в список
+            users.Add(user);
+            return user;
+        });
+
+        app.MapPut("/api/users", (Person3 userData) => {
+
+            // получаем пользователя по id
+            var user = users.FirstOrDefault(u => u.Id == userData.Id);
+            // если не найден, отправляем статусный код и сообщение об ошибке
+            if (user == null) return Results.NotFound(new { message = "Пользователь не найден" });
+            // если пользователь найден, изменяем его данные и отправляем обратно клиенту
+
+            user.Age = userData.Age;
+            user.Name = userData.Name;
+            return Results.Json(user);
+        });
+
+        app.Run();
+    }
 }
 
 // Примеры 1 - 4
@@ -102,6 +168,13 @@ record Person(string Name, int Age);
 // Пример 5
 class Person2 {
     public string Id { get; set; } = "";
+    public string Name { get; set; } = "";
+    public int Age { get; set; }
+}
+
+// Пример 6
+public class Person3 {
+    public int Id { get; set; }
     public string Name { get; set; } = "";
     public int Age { get; set; }
 }

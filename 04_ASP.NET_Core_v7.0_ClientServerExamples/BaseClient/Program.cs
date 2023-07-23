@@ -5,6 +5,9 @@ using System.Net.Http.Json; // пространство имен метода Ge
 namespace BaseClient;
 
 class Program {
+    // Клиент
+    static HttpClient httpClient = new HttpClient();
+
     // Main
     static async Task Main() {
         await RunApp();
@@ -34,10 +37,12 @@ class Program {
         // await Example_4();
 
         // Пример 5 "Отправка json с помощью HttpClient"
-        await Example_5();
+        // await Example_5();
+
+        // Пример 6 Взаимодействие HttpClient с Web API
+        await Example_6();
     }
 
-    static HttpClient httpClient = new HttpClient();
     
     // EX-1.0 GetFromJsonAsync() - отправляет запрос GET и возвращает десериализованные объекты из JSON
     static async Task ExampleGetFromJsonAsync() {
@@ -132,6 +137,16 @@ class Program {
         Console.WriteLine($"{person?.Id} - {person?.Name}");
     }
 
+    // Пример 6 Взаимодействие HttpClient с Web API
+    static async Task Example_6() {
+        List<Person3>? people = await httpClient
+            .GetFromJsonAsync<List<Person3>>("https://localhost:7219/api/users");
+        if (people != null) {
+            foreach (var person in people) {
+                Console.WriteLine(person.Name);
+            }
+        }
+    }
 }
 
 // для успешного ответа примеры 1 - 4
@@ -143,6 +158,13 @@ record Error(string Message);
 // Пример 5
 class Person2 {
     public string Id { get; set; } = "";
+    public string Name { get; set; } = "";
+    public int Age { get; set; }
+}
+
+// Пример 6 Взаимодействие HttpClient с Web API
+public class Person3 {
+    public int Id { get; set; }
     public string Name { get; set; } = "";
     public int Age { get; set; }
 }
