@@ -139,6 +139,20 @@ class Program {
 
     // Пример 6 Взаимодействие HttpClient с Web API
     static async Task Example_6() {
+        // id первого объекта 
+        int id = 1;
+        using var response = await httpClient.GetAsync($"https://localhost:7219/api/users/{id}");
+        // если объект на сервере найден, то есть статусный код равен 404
+        if (response.StatusCode == HttpStatusCode.NotFound) {
+            Error? error = await response.Content.ReadFromJsonAsync<Error>();
+            Console.WriteLine(error?.Message);
+        }
+        else if (response.StatusCode == HttpStatusCode.OK) {
+            // считываем ответ
+            Person3? person = await response.Content.ReadFromJsonAsync<Person3>();
+            Console.WriteLine($"{person?.Id} - {person?.Name}");
+        }
+        /*
         List<Person3>? people = await httpClient
             .GetFromJsonAsync<List<Person3>>("https://localhost:7219/api/users");
         if (people != null) {
@@ -146,6 +160,7 @@ class Program {
                 Console.WriteLine(person.Name);
             }
         }
+        */
     }
 }
 
