@@ -1,7 +1,6 @@
 ﻿// Пример простого клиента (работа с запросами/протоколами)
 using System.Net;
 using System.Net.Http.Json; // пространство имен метода GetFromJsonAsync
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BaseClient;
 
@@ -17,6 +16,7 @@ class Program {
         // Пример 2, работа DeleteFromJsonAsync()
         // await ExampleDeleteFromJsonAsync();
 
+        // Пример 2 (на сервере)
         await Example_2();
     }
 

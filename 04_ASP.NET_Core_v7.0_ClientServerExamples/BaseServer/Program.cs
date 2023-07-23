@@ -6,9 +6,12 @@ namespace BaseServer;
 
 public class Program {
     public static void Main(string[] args) {
-        // Пример 1        Example_1();
+        // Пример 1
+        // Example_1();
         // Пример 2
-        Example_2();
+        // Example_2();
+        // Пример 3 "Отправка заголовков"
+        Example_3();
     }
 
     // Пример 1
@@ -28,8 +31,7 @@ public class Program {
         var builder = WebApplication.CreateBuilder();
         var app = builder.Build();
 
-        app.MapGet("/{id?}", (int? id) =>
-        {
+        app.MapGet("/{id?}", (int? id) => {
             if (id is null)
                 return Results.BadRequest(new { Message = "Некорректные данные в запросе" });
             else if (id != 1)
@@ -38,6 +40,22 @@ public class Program {
                 return Results.Json(new Person("Bob", 42));
         });
 
+        app.Run();
+    }
+
+    // Пример 3 "Отправка заголовков"
+    static void Example_3() {
+        var builder = WebApplication.CreateBuilder();
+        var app = builder.Build();
+
+        app.MapGet("/", (HttpContext context) => {
+            // Пытаемся получить заголвок "SecreteCode"
+            context.Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            // Пытаемся получить заголвок "SecreteCode"
+            context.Request.Headers.TryGetValue("SecreteCode", out var secreteCode);
+            // Отправка данных обратно клиенту
+            return $"User-Agent: {userAgent}  SecreteCode: {secreteCode}";
+        });
         app.Run();
     }
 }
