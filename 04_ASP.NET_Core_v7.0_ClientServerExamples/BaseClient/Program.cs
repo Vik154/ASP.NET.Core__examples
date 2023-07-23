@@ -17,7 +17,10 @@ class Program {
         // await ExampleDeleteFromJsonAsync();
 
         // Пример 2 (на сервере)
-        await Example_2();
+        // await Example_2();
+
+        // Пример 3 "Отправка заголовков"
+        await Example_3();
     }
 
     // EX-1.0 GetFromJsonAsync() - отправляет запрос GET и возвращает десериализованные объекты из JSON
@@ -49,6 +52,19 @@ class Program {
             Person? person = await response.Content.ReadFromJsonAsync<Person>();
             Console.WriteLine($"Name: {person?.Name}   Age: {person?.Age}");
         }
+    }
+
+    // Пример 3 "Отправка заголовков из консольного приложения с помощью HttpClient":
+    static async Task Example_3() {
+        // Адрес сервера
+        var serverAddress = "https://localhost:7219";
+        // Установка обоих заголовков
+        httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla FIrefox 5.4");
+        httpClient.DefaultRequestHeaders.Add("SecreteCode", "hello");
+
+        using var response = await httpClient.GetAsync(serverAddress);
+        var responseText = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseText);
     }
 
 }
