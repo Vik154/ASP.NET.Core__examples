@@ -189,7 +189,7 @@ class Program {
     // Пример 8
     static async Task Example_8() {
         // отправляемые данные
-        string filePath = "D:\\forest.jpg";
+        string filePath = "C:\\forest.jpg";
         using var fileStream = File.OpenRead(filePath);
         // создаем объект HttpContent
         StreamContent content = new StreamContent(fileStream);
