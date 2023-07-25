@@ -1,13 +1,13 @@
-// Пример простого клиента (работа с запросами)
+// Пример простого сервера (работа с запросами)
 namespace BaseServer;
 
 public class Program {
     public static void Main(string[] args) {
-        RunApp();
+        RunApp(args);
     }
 
     // Точка входа
-    static void RunApp() {
+    static void RunApp(string[] args) {
         // Пример 1
         // Example_1();
         // Пример 2
@@ -23,7 +23,10 @@ public class Program {
         // Пример 7
         // Example_7();
         // Пример 8 Отправка потоков и массива байтов
-        Example_8();
+        // Example_8();
+
+        // 01 - Базовая концепция ASP NET CORE (MIN API - пример)
+        BaseConceptionCore.RunApplication(args);
     }
 
     // Пример 1
