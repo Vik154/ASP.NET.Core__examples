@@ -22,7 +22,9 @@ public class Program {
         // Пример 5 Отправка json с помощью HttpClient
         // Example_5();
         // Пример 6
-        Example_6();
+        // Example_6();
+        // Пример 7
+        Example_7();
     }
 
     // Пример 1
@@ -158,6 +160,22 @@ public class Program {
             return Results.Json(user);
         });
 
+        app.Run();
+    }
+
+    // Пример 7 Отправка форм
+    static void Example_7() {
+        var builder = WebApplication.CreateBuilder();
+        var app = builder.Build();
+
+        app.MapPost("/data", async (HttpContext httpContext) => {
+            // получаем данные формы
+            var form = httpContext.Request.Form;
+            string? name = form["name"];
+            string? email = form["email"];
+            string? age = form["age"];
+            await httpContext.Response.WriteAsync($"Name: {name}   Email:{email}    Age: {age}");
+        });
         app.Run();
     }
 }

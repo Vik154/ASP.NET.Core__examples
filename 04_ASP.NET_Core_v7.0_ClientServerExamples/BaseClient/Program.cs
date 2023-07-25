@@ -40,7 +40,10 @@ class Program {
         // await Example_5();
 
         // Пример 6 Взаимодействие HttpClient с Web API
-        await Example_6();
+        // await Example_6();
+
+        // Пример 7 Отправка форм
+        await Example_7();
     }
 
     
@@ -161,6 +164,23 @@ class Program {
             }
         }
         */
+    }
+
+    // Пример 7 Отправка форм 
+    static async Task Example_7() {
+        // данные для отправки в виде объекта IEnumerable<KeyValuePair<string, string>>
+        Dictionary<string, string> data = new Dictionary<string, string> {
+            ["name"] = "Tom",
+            ["email"] = "tom@localhost.com",
+            ["age"] = "38"
+        };
+        // создаем объект HttpContent
+        HttpContent contentForm = new FormUrlEncodedContent(data);
+        // отправляем запрос
+        using var response = await httpClient.PostAsync("https://localhost:7219/data", contentForm);
+        // получаем ответ
+        string responseText = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseText);
     }
 }
 
