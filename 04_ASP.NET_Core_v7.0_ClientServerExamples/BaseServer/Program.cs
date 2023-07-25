@@ -24,7 +24,9 @@ public class Program {
         // Пример 6
         // Example_6();
         // Пример 7
-        Example_7();
+        // Example_7();
+        // Пример 8 Отправка потоков и массива байтов
+        Example_8();
     }
 
     // Пример 1
@@ -176,6 +178,29 @@ public class Program {
             string? age = form["age"];
             await httpContext.Response.WriteAsync($"Name: {name}   Email:{email}    Age: {age}");
         });
+        app.Run();
+    }
+
+    // Пример 8 Отправка потоков и массива байтов
+    static void Example_8() {
+        var builder = WebApplication.CreateBuilder();
+        var app = builder.Build();
+
+        app.MapPost("/data", async (HttpContext httpContext) => {
+            // путь к папке, где будут храниться файлы
+            var uploadPath = $"{Directory.GetCurrentDirectory()}/uploads";
+            // создаем папку для хранения файлов
+            Directory.CreateDirectory(uploadPath);
+            // генерируем произвольное название файла с помощью guid
+            string fileName = Guid.NewGuid().ToString();
+            // получаем поток
+            using (var fileStream = new FileStream($"{uploadPath}/{fileName}.jpg", FileMode.Create)) {
+                await httpContext.Request.Body.CopyToAsync(fileStream);
+            }
+
+            await httpContext.Response.WriteAsync("Данные сохранены");
+        });
+
         app.Run();
     }
 }

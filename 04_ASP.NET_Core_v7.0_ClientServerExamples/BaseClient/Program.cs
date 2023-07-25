@@ -43,10 +43,13 @@ class Program {
         // await Example_6();
 
         // Пример 7 Отправка форм
-        await Example_7();
+        // await Example_7();
+
+        // Пример 8 Отправка потоков и массива байтов
+        await Example_8();
     }
 
-    
+
     // EX-1.0 GetFromJsonAsync() - отправляет запрос GET и возвращает десериализованные объекты из JSON
     static async Task ExampleGetFromJsonAsync() {
         object? data = await httpClient.GetFromJsonAsync("https://localhost:7219/", typeof(Person));
@@ -182,6 +185,20 @@ class Program {
         string responseText = await response.Content.ReadAsStringAsync();
         Console.WriteLine(responseText);
     }
+
+    // Пример 8
+    static async Task Example_8() {
+        // отправляемые данные
+        string filePath = "D:\\forest.jpg";
+        using var fileStream = File.OpenRead(filePath);
+        // создаем объект HttpContent
+        StreamContent content = new StreamContent(fileStream);
+        // отправляем запрос
+        using var response = await httpClient.PostAsync("https://localhost:7219/data", content);
+        // получаем ответ
+        string responseText = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseText);
+    } 
 }
 
 // для успешного ответа примеры 1 - 4
