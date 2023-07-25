@@ -1,8 +1,5 @@
-// ѕример простого сервера (работа с запросами)
-using System;
-
+// ѕример простого клиента (работа с запросами)
 namespace BaseServer;
-
 
 public class Program {
     public static void Main(string[] args) {
