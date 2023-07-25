@@ -12,7 +12,10 @@ public class Program {
         // CoreSenders.RunApplication(args);
 
         // 03 - Пример простейшего приложения Web API в стиле REST
-        ElementaryAPI.RunApplication(args);
+        // ElementaryAPI.RunApplication(args);
+
+        // 04 - Загрузка файлов на сервер
+        UploadingFiles.RunApplication(args);
     }
 
     // Точка входа
