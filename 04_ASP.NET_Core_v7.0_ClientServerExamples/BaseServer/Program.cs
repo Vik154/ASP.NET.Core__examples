@@ -3,7 +3,13 @@ namespace BaseServer;
 
 public class Program {
     public static void Main(string[] args) {
-        RunApp(args);
+        // RunApp(args);
+
+        // 01 - Базовая концепция ASP NET CORE (MIN API - пример)
+        // BaseConceptionCore.RunApplication(args);
+
+        // 02 - 
+        CoreSenders.RunApplication(args);
     }
 
     // Точка входа
@@ -24,9 +30,6 @@ public class Program {
         // Example_7();
         // Пример 8 Отправка потоков и массива байтов
         // Example_8();
-
-        // 01 - Базовая концепция ASP NET CORE (MIN API - пример)
-        BaseConceptionCore.RunApplication(args);
     }
 
     // Пример 1
