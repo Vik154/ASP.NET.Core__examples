@@ -1,4 +1,7 @@
-﻿namespace BaseServer;
+﻿using System.ComponentModel;
+using System.Text.Json;
+
+namespace BaseServer;
 
 public class CoreSenders {
     // Minimal ASP Core API
@@ -10,7 +13,10 @@ public class CoreSenders {
         // app.Run(FormSending);
 
         // Отправка Json
-        app.Run(JsonSender);
+        // app.Run(JsonSender);
+
+        // Json конвертер
+        app.Run(JsonExceptionHandler);
 
         app.Run();
     }
@@ -56,6 +62,32 @@ public class CoreSenders {
             catch { }
             // отправляем пользователю данные
             await response.WriteAsJsonAsync(new { text = message });
+        }
+        else {
+            response.ContentType = "text/html; charset=utf-8";
+            await response.SendFileAsync("html/IndexJson.html");
+        }
+    }
+
+    // Решение проблемы с исключением типа System.Text.Json.JsonException
+    static async Task JsonExceptionHandler(HttpContext context) {
+        var response = context.Response;
+        var request = context.Request;
+        
+        if (request.Path == "/api/user") {
+            var responseText = "Некорректные данные";   // содержание сообщения по умолчанию
+
+            if (request.HasJsonContentType()) {
+                // определяем параметры сериализации/десериализации
+                var jsonoptions = new JsonSerializerOptions();
+                // добавляем конвертер кода json в объект типа Person
+                jsonoptions.Converters.Add(new PersonConverter());
+                // десериализуем данные с помощью конвертера PersonConverter
+                var person = await request.ReadFromJsonAsync<Person>(jsonoptions);
+                if (person != null)
+                    responseText = $"Name: {person.Name}  Age: {person.Age}";
+            }
+            await response.WriteAsJsonAsync(new { text = responseText });
         }
         else {
             response.ContentType = "text/html; charset=utf-8";
