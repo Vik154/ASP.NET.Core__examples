@@ -8,8 +8,11 @@ public class Program {
         // 01 - Базовая концепция ASP NET CORE (MIN API - пример)
         // BaseConceptionCore.RunApplication(args);
 
-        // 02 - 
-        CoreSenders.RunApplication(args);
+        // 02 - Сериализация JSON (конвертация туда-сюда)
+        // CoreSenders.RunApplication(args);
+
+        // 03 - Пример простейшего приложения Web API в стиле REST
+        ElementaryAPI.RunApplication(args);
     }
 
     // Точка входа
