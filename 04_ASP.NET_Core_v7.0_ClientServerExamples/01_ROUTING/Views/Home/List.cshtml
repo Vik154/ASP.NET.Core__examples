@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Example foreach List</title>
+    </head>
+    <body>
+        <p> Controller: HomeController <br />
+            Method: List()             <br />
+            View: List.cshtml
+        </p>
+        <ul>
+            @foreach (string item in Model) {
+                <li>@item</li>
+            }      
+        </ul>
+    </body>
+</html>
