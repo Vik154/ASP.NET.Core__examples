@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseClient", "BaseClient\Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_ROUTING", "01_ROUTING\01_ROUTING.csproj", "{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_ACTION", "02_ACTION\02_ACTION.csproj", "{C395D4C1-9E7F-4809-BE4C-5DDD0C8CF035}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C395D4C1-9E7F-4809-BE4C-5DDD0C8CF035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C395D4C1-9E7F-4809-BE4C-5DDD0C8CF035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C395D4C1-9E7F-4809-BE4C-5DDD0C8CF035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C395D4C1-9E7F-4809-BE4C-5DDD0C8CF035}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
