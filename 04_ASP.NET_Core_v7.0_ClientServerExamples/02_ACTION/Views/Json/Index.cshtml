@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+        <p>
+            <a asp-action="clientinfo">Test controller method</a>
+        </p>
+        <button id="button">JS Client</button>
+        <p>Id: <span id="idspan"></span></p>
+        <p>Login: <span id="loginspan"></span></p>
+        <p>Email: <span id="emailspan"></span></p>
+
+        <script>
+            let btn = document.querySelector("button");
+            let xhr = new XMLHttpRequest();
+
+            btn.addEventListener("click", () => {
+                xhr.open("GET", "json/clientinfo");
+                xhr.onload = () => {
+                    let response = JSON.parse(xhr.response);
+                    document.querySelector("#idspan").innerHTML = response.id;
+                    document.querySelector("#loginspan").innerHTML = response.login;
+                    document.querySelector("#emailspan").innerHTML = response.email;
+                }
+                xhr.send();
+            })
+        </script>
+    </body>
+</html>
