@@ -1,4 +1,5 @@
-﻿@{
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
@@ -8,8 +9,13 @@
     Подключаемый файл, частичная реализация, это View не является полноценной разметкой
 </p>
 
+@* Внедрение частичного представления в указанный блок разметки *@
+<partial name="_ContactsPartial" />
+
+@*
 @section Footer {
     <footer>
         Index. Создание UI в Asp.Net Core
     </footer>
 }
+*@
