@@ -30,12 +30,6 @@ public class HomeController : Controller {
     }
 
     // Прмер catch-all параметров (когда неизвестно колво сегментов url:home/value/xxxx/xxx/xx
-    /*
-    public IActionResult DefaultCatchAll() {
-        return View("Index.cshtml");
-    }
-    */
-
     public IActionResult Values(string? data) {
 
         if (data == null)
@@ -51,6 +45,24 @@ public class HomeController : Controller {
         }
         
         return View(result);
+    }
+
+    // Пример генерации url-адресов
+    // Свойство Url полученное по наследству от базового класса Controller содержит IUrlHelper,
+    // который содержит методы для построение URL в MVC приложениях.
+    public IActionResult GenerateURL() {
+        string? url1 = Url.Action("Item");                           // создание URL по имени метода действия
+        string? url2 = Url.Action("Item", new { id = 1 });           // создание URL по имени метода действия с указанием параметра id
+        string? url3 = Url.Action("Index", "Test");                  // создание URL по имени метода действия и контроллера
+        string? url4 = Url.Action("List", "Test", new { id = 1 });   // URL по имени метода, контроллера и указания параметров
+
+        string?[] model = { url1, url2, url3, url4 };
+
+        return View(model);
+    }
+
+    public string Item() {
+        return "Item";
     }
 
 } // class HomeController
