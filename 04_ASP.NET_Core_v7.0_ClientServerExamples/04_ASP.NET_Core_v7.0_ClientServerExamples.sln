@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseServer", "BaseServer\BaseServer.csproj", "{32BE4AAE-5039-4C41-8335-DD73A5D0DCFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseServer", "BaseServer\BaseServer.csproj", "{32BE4AAE-5039-4C41-8335-DD73A5D0DCFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseClient", "BaseClient\BaseClient.csproj", "{48136C8C-5176-4F31-BCAE-33383C4E8D18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseClient", "BaseClient\BaseClient.csproj", "{48136C8C-5176-4F31-BCAE-33383C4E8D18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_ROUTING", "01_ROUTING\01_ROUTING.csproj", "{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{48136C8C-5176-4F31-BCAE-33383C4E8D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48136C8C-5176-4F31-BCAE-33383C4E8D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48136C8C-5176-4F31-BCAE-33383C4E8D18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{087E69DC-FE3C-4535-94E0-8FEAA595B3EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
