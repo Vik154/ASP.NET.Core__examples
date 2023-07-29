@@ -8,10 +8,22 @@ public class Program {
         builder.Services.AddControllersWithViews();  // добавл€ем поддержку контроллеров с представлени€ми
         var app = builder.Build();
 
+        // app.UseDeveloperExceptionPage();
+
         // —пецифичные маршруты лучше расположить в начале
         app.MapControllerRoute(
             name: "TwoParametrs",
             pattern: "{controller}/{action}/{x}/{y}");
+
+        // {*data} - catch all параметр, которых подходит в тех случа€х, когда изначально не известно
+        // количество сегментов. значение catch all параметра, будет соответствовать оставшейс€ строке
+        // URL адреса, котора€ не подошла под другие параметры
+        // /home/values/10/20 в параметре {*data} будет находитьс€ значение "10/20"
+        app.MapControllerRoute(
+            name: "CatchAll",
+            pattern: "{controller=Home}/{action}/{*data}"
+            );
+
         // устанавливаем сопоставление маршрутов с контроллерами
         // Ѕолее общий маршрут распологают в конце списка
         app.MapControllerRoute(
