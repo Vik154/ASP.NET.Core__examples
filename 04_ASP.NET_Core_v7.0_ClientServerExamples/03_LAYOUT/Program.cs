@@ -3,10 +3,8 @@ namespace Layout;
 public class Program {
     public static void Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddMvcCore();
+        builder.Services.AddControllersWithViews();
         var app = builder.Build();
-
-        app.MapGet("/", () => "Hello COre");
 
         app.MapControllerRoute(
             name: "default",
