@@ -22,6 +22,12 @@ namespace Routing.Controllers {
             return x + y;
         }
 
+        // Пример маршрута с параметрами, возвращающее представление View
+        public IActionResult SumResult(int x, int y) {
+            int res = x + y;
+            return View(res);
+        }
+
         // GET: HomeController/Details/5
         public ActionResult Details(int id) {
             return View();
