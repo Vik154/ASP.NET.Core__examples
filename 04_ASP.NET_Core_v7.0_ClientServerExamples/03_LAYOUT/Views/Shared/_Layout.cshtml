@@ -17,6 +17,14 @@
         @RenderBody()
     </div>
     @* Визуализация содержимого, которое входит в секцию Footer представления *@
-    @RenderSection("Footer")
+    @* IsSectionDefined - проверка наличия секции в представлении *@
+    @if (IsSectionDefined("Footer")) {
+        @RenderSection("Footer")
+    }
+    else {
+        <footer>
+            Создание пользовательского интерфейса на ASP.NET Core
+        </footer>
+    }
 </body>
 </html>
