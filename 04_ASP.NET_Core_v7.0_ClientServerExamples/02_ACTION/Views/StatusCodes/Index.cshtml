@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <ul>
+        <li><a asp-action="sample1">StatusCode(200) // 200</a></li>
+        <li><a asp-action="sample2">Ok() // 200</a></li>
+        <li><a asp-action="sample3">Created() // 201</a></li>
+        <li><a asp-action="sample4">BadRequest() // 400</a></li>
+        <li><a asp-action="sample5">Unauthorized() // 401</a></li>
+        <li><a asp-action="sample6">NotFound() // 404</a></li>
+    </ul>
+</body>
+</html>
