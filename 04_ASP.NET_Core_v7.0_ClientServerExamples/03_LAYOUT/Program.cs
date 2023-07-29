@@ -6,6 +6,8 @@ public class Program {
         builder.Services.AddMvcCore();
         var app = builder.Build();
 
+        app.MapGet("/", () => "Hello COre");
+
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
