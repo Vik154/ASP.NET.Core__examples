@@ -1,8 +1,11 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers*@
+@model LtModel.ContactsViewModel
 
 @{
     ViewData["Title"] = "Contacts";
 }
 
 <h1>Contacts</h1>
-<partial name="_ContactsPartial" /> 
+@await Html.PartialAsync("_ContactsPartial", Model)
+
+@*<partial name="_ContactsPartial" />*@ 

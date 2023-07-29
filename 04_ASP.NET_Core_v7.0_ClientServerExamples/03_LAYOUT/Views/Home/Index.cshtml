@@ -1,4 +1,7 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers *@
+
+@model LtModel.ContactsViewModel
+
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
@@ -9,8 +12,11 @@
     Подключаемый файл, частичная реализация, это View не является полноценной разметкой
 </p>
 
+@* Рендеринг частичного представления *@
+@await Html.PartialAsync("_ContactsPartial", Model)
+
 @* Внедрение частичного представления в указанный блок разметки *@
-<partial name="_ContactsPartial" />
+@* @<partial name="_ContactsPartial" /> *@
 
 @*
 @section Footer {

@@ -1,5 +1,7 @@
-﻿<ul>
-    <li>tel: +8 888 995 55 44</li>
-    <li>email: user@example.com</li>
-    <li>address: str. abcd 25</li>
+﻿@model LtModel.ContactsViewModel
+
+<ul>
+    <li>tel: @Model.Phone</li>
+    <li>email: @Model.Email</li>
+    <li>address: @Model.Address</li>
 </ul>
