@@ -1,5 +1,5 @@
+// Результаты действий IActionResult
 namespace Action;
-
 
 public class Program {
     public static void Main(string[] args) {
@@ -10,7 +10,6 @@ public class Program {
         app.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
         app.Run();
     }
 }
