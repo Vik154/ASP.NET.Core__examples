@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04_AREAS", "04_VIEW_COMPONE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_MODELS", "05_MODELS\05_MODELS.csproj", "{5DA2594C-84AA-4126-9E31-E83491E65343}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06_HTMLHellpers", "06_HTMLHellpers\06_HTMLHellpers.csproj", "{3394D9D5-9DFB-4764-BF8E-C5A78E0FD624}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5DA2594C-84AA-4126-9E31-E83491E65343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DA2594C-84AA-4126-9E31-E83491E65343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DA2594C-84AA-4126-9E31-E83491E65343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3394D9D5-9DFB-4764-BF8E-C5A78E0FD624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3394D9D5-9DFB-4764-BF8E-C5A78E0FD624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3394D9D5-9DFB-4764-BF8E-C5A78E0FD624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3394D9D5-9DFB-4764-BF8E-C5A78E0FD624}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
