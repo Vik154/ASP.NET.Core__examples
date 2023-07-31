@@ -19,9 +19,13 @@ public class Program {
         var app = builder.Build();
 
         // app.MapGet("/", () => "Hello World!");
-        app.MapControllerRoute(
+        /* app.MapControllerRoute(
             name: "default", 
             pattern: "{controller=Engine}/{action=Index}");
+        */
+
+        // Маршрутизация на основе атрибутов
+        app.MapControllers();
 
         app.Run();
     }
