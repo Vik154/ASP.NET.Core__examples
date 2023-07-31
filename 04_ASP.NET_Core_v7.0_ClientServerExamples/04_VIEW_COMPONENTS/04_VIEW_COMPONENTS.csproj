@@ -7,4 +7,14 @@
     <RootNamespace>_04_VIEW_COMPONENTS</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Engine\About.html" />
+    <None Remove="Views\Engine\Index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Engine\About.html" />
+    <Content Include="Views\Engine\Index.html" />
+  </ItemGroup>
+
 </Project>
