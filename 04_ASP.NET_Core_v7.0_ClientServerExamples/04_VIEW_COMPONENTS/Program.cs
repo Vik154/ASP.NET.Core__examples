@@ -25,7 +25,18 @@ public class Program {
         */
 
         // Маршрутизация на основе атрибутов
-        app.MapControllers();
+        // app.MapControllers();
+
+        /* ОБЛАСТИ - AREAS */
+        // добавляем поддержку контроллеров, которые располагаются в области
+        app.MapControllerRoute(
+            name: "Acc",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+        // добавляем поддержку для контроллеров, которые располагаются вне области
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
     }
