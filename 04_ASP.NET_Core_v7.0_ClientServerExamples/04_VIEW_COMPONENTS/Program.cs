@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace _04_VIEW_COMPONENTS;
 
 
@@ -7,7 +9,10 @@ public class Program {
         builder.Services.AddControllersWithViews();
         var app = builder.Build();
 
-        app.MapGet("/", () => "Hello World!");
+        // app.MapGet("/", () => "Hello World!");
+        app.MapControllerRoute(
+            name: "default", 
+            pattern: "{controller=Home}/{action=Index}");
 
         app.Run();
     }
