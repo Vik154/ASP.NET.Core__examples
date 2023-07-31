@@ -12,7 +12,7 @@ public class Program {
         // app.MapGet("/", () => "Hello World!");
         app.MapControllerRoute(
             name: "default", 
-            pattern: "{controller=Home}/{action=Index}");
+            pattern: "{controller=Home}/{action=Index2}");
 
         app.Run();
     }
