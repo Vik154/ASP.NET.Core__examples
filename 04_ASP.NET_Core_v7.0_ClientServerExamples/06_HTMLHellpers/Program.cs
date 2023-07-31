@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Mvc;
+
 namespace _06_HTMLHellpers;
 
 
@@ -7,7 +11,7 @@ public class Program {
         builder.Services.AddControllersWithViews();
         var app = builder.Build();
 
-        app.MapGet("/", () => "Hello World!");
+        app.MapControllerRoute(name: "ListHelper", pattern: "{controller=ListHelper}/{action=Index}");
 
         app.Run();
     }
