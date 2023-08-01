@@ -35,4 +35,7 @@ public class HomeController : Controller {
 
     // Собственные тег-хелперы
     public IActionResult THelp() => View();
+
+    // Собственный асинхронный тег-хелпер
+    public IActionResult AsyncTHelp() => View();
 }
