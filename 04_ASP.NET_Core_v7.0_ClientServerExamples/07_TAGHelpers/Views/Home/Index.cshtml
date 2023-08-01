@@ -1,0 +1,6 @@
+﻿@* Создание ссылок способы: *@
+@Html.ActionLink("О сайте", "About", "Home")        <br />
+
+<a href='@Url.Action("About", "Home")'>О сайте</a>  <br />
+
+<a asp-controller="Home" asp-action="About">О сайте</a>
