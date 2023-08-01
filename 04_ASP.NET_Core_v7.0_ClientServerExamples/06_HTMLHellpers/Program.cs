@@ -12,7 +12,8 @@ public class Program {
         var app = builder.Build();
 
         // app.MapControllerRoute(name: "ListHelper", pattern: "{controller=ListHelper}/{action=Index}");
-        app.MapControllerRoute(name: "HtmlHelper", pattern: "{controller=Base}/{action=Create}");
+        // app.MapControllerRoute(name: "HtmlHelper", pattern: "{controller=Base}/{action=Create}");
+        app.MapControllerRoute(name: "StaticHtmlHelper", pattern: "{controller=Base}/{action=Index}");
 
         app.Run();
     }

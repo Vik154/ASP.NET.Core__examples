@@ -1,0 +1,25 @@
+﻿@* 
+Так как строго типизированные хелперы могут использоваться только в строго типизированных 
+представлениях, то вначале представления указываем модель, которая будет использоваться:
+*@
+@model _06_HTMLHellpers.Models.User
+
+@using (Html.BeginForm("Index", "Base", FormMethod.Post)){
+    <p>
+        @* Строго типизированный хелпер похож на обычный, только в конце прибавляется суффикс For: LabelFor *@
+        @Html.LabelFor((n) => n.Name, "Имя") <br/>
+        @Html.TextBoxFor((n) => n.Name)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Age, "Возраст")<br />
+        @Html.TextBoxFor(m=>m.Age, "", new { type = "number" })
+    @*
+    @Html.TextBoxFor(m=>m.Age, "", new { type = "number" }) 
+    СГЕНЕРИРУЕТ:
+    <input data-val="true" data-val-required="The Age field is required." id="Age" name="Age" type="number" value="">
+    *@
+    </p>
+    <p>
+        <input type="submit" value="Отпраить" />
+    </p>
+}

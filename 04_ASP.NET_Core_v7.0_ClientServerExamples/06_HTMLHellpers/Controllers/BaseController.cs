@@ -9,4 +9,10 @@ public class BaseController : Controller {
 
     [HttpPost]
     public string Create(string name, int age) => $"{name} - {age}";
+
+    [HttpGet]
+    public IActionResult Index() => View();
+
+    [HttpPost]
+    public string Index(string name, int age) => $"{name} - {age}";
 }
