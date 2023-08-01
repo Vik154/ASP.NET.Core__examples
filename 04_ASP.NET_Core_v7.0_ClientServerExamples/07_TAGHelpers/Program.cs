@@ -11,7 +11,8 @@ public class Program {
         // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Create}");
         // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Days}");
         // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=THelp}");
-        app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=AsyncTHelp}");
+        // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=AsyncTHelp}");
+        app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Advanced}");
 
         app.Run();
     }
