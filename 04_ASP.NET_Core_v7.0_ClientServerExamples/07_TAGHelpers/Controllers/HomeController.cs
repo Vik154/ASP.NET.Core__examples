@@ -26,4 +26,10 @@ public class HomeController : Controller {
         Company company = companies.FirstOrDefault(c => c.Id == product.CompanyId);
         return $"Добавлен новый элемент: {product.Name} ({company?.Name})";
     }
+
+    // Привязка перечислений
+    public IActionResult Days() => View();
+
+    [HttpPost]
+    public string Days(DayTimeViewModel model) => model.Period.ToString();
 }

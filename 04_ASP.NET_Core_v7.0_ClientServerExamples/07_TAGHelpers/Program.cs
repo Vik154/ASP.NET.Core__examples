@@ -8,7 +8,8 @@ public class Program {
         var app = builder.Build();
 
         // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Index}");
-        app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Create}");
+        // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Create}");
+        app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Days}");
 
         app.Run();
     }

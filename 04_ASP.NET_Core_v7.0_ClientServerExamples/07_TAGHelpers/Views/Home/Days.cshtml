@@ -1,0 +1,21 @@
+﻿@using _07_TAGHelpers.Models
+@model _07_TAGHelpers.Models.DayTimeViewModel
+
+<form method="post">
+    <div>
+        <div>
+            <label asp-for="Period">Время суток</label>
+            <select asp-for="Period" asp-items="Html.GetEnumSelectList<DayTime>()"></select>
+            @*
+            В качестве альтернативы можно создавать список с помощью конструктора SelectList:
+            <div>
+                <label asp-for="Period">Время суток</label>
+                <select asp-for="Period" asp-items="@new SelectList(Enum.GetNames(typeof(DayTime)))"></select>
+            </div>
+            *@
+        </div>
+        <div>
+            <input type="submit" value="save" />
+        </div>
+    </div>
+</form>
