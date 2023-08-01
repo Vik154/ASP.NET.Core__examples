@@ -32,4 +32,7 @@ public class HomeController : Controller {
 
     [HttpPost]
     public string Days(DayTimeViewModel model) => model.Period.ToString();
+
+    // Собственные тег-хелперы
+    public IActionResult THelp() => View();
 }

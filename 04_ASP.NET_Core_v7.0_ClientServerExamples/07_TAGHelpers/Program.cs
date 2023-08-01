@@ -9,7 +9,8 @@ public class Program {
 
         // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Index}");
         // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Create}");
-        app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Days}");
+        // app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=Days}");
+        app.MapControllerRoute(name: "Default", pattern: "{controller=Home}/{action=THelp}");
 
         app.Run();
     }
