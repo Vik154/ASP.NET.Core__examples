@@ -41,4 +41,7 @@ public class HomeController : Controller {
 
     // Управление выводом хелпера
     public IActionResult Advanced() => View();
+
+    // Управление стилями / цветом
+    public IActionResult MyStyle() => View();
 }
