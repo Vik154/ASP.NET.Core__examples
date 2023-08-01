@@ -11,7 +11,8 @@ public class Program {
         builder.Services.AddControllersWithViews();
         var app = builder.Build();
 
-        app.MapControllerRoute(name: "ListHelper", pattern: "{controller=ListHelper}/{action=Index}");
+        // app.MapControllerRoute(name: "ListHelper", pattern: "{controller=ListHelper}/{action=Index}");
+        app.MapControllerRoute(name: "HtmlHelper", pattern: "{controller=Base}/{action=Create}");
 
         app.Run();
     }

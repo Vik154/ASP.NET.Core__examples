@@ -1,0 +1,70 @@
+﻿@using (Html.BeginForm("Create", "Base", FormMethod.Post)) {
+    <p>
+        <label>Имя</label><br />
+        @Html.TextBox("Name")
+    </p>
+    <p>
+        <label>Возраст</label><br />
+        @Html.TextBox("Age","", new { type="number" })
+    </p>
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+    <p>
+        @Html.TextArea("text", "Hello world")
+    </p>
+    <p>
+        @Html.TextArea("text", "Hello world", 5, 50, null)
+    </p>
+    <p>
+        @Html.Hidden("UserId", "2")
+        <input id="UserId" name="UserId" type="hidden" value="2" />
+    </p>
+    <p>
+        @Html.Password("UserPassword", "val")
+        @* Сгенерирует: *@
+        <input id="UserPassword" name="UserPassword" type="password" value="val" />
+    </p>
+    <p>
+        @Html.RadioButton("color", "red")
+        <span>красный</span> <br />
+        @Html.RadioButton("color", "blue")
+        <span>синий</span> <br />
+        @Html.RadioButton("color", "green", true)
+        <span>зеленый</span>
+        <br/>
+        @* Сгенерирует: *@
+        <input id="color" name="color" type="radio" value="red" />
+        <span>красный</span> <br />
+        <input id="color" name="color" type="radio" value="blue" />
+        <span>синий</span> <br />
+        <input checked="checked" id="color" name="color" type="radio" value="green" />
+        <span>зеленый</span>
+    </p>
+    <p>
+        @Html.CheckBox("Enable", false)
+        @* Сгенерирует: *@
+        <input id="Enable" name="Enable" type="checkbox" value="true">
+    </p>
+    <p>
+        @Html.DropDownList("user", new SelectList(new string[] { "Tom", "Sam", "Bob", "Alice" }), "Выберите пользователя")
+        @* Сгенерирует: *@
+        <select id="user" name="user">
+            <option value="">Выберите пользователя</option>
+            <option>Tom</option>
+            <option>Sam</option>
+            <option>Bob</option>
+            <option>Alice</option>
+        </select>
+    </p>
+    <p>
+        @Html.ListBox("users", new MultiSelectList(new string[] { "Tom", "Sam", "Bob", "Alice" }))
+        @* Сгенерирует: *@
+        <select id="users" multiple="multiple" name="users">
+            <option>Tom</option>
+            <option>Sam</option>
+            <option>Bob</option>
+            <option>Alice</option>
+        </select>
+    </p>
+}
