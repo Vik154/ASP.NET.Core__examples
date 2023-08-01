@@ -1,0 +1,7 @@
+﻿@* Подключение tag-хелперов *@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@* Создание ссылок способы: *@
+@Html.ActionLink("О сайте", "About", "Home") <br/>
+<a href='@Url.Action("About", "Home")'>О сайте</a> <br/>
+<a asp-controller></a>
