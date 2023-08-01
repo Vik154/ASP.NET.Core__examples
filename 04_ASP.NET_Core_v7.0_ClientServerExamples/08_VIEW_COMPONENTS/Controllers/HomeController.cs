@@ -6,4 +6,5 @@ public class HomeController : Controller {
     
     public IActionResult TestTimerComponent() => View();
     public IActionResult TestPersonComponent() => View();
+    public IActionResult DependencyTimer() => View();
 }
