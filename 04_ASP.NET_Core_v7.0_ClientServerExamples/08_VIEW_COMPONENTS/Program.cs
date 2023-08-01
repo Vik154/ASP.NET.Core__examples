@@ -6,7 +6,9 @@ public class Program {
         builder.Services.AddControllersWithViews();
         var app = builder.Build();
 
-        app.MapGet("/", () => "Hello World!");
+        app.MapControllerRoute(
+            name: "TimerSample", 
+            pattern: "{controller=Home}/{action=TestTimerComponent}");
 
         app.Run();
     }

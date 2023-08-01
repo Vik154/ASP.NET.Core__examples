@@ -1,0 +1,14 @@
+﻿@addTagHelper *, 08_VIEW_COMPONENTS
+
+<p>
+    24 часовой формат с секундами: <br />
+    @await Component.InvokeAsync("Timer", new { includeSeconds=true, format24=true})
+</p>
+<p>
+    12 часовой формат без секунд: <br />
+    <vc:timer include-seconds="false" format24="false"></vc:timer>
+</p>
+<p>
+    24 часовой формат без секунд: <br />
+    <vc:timer include-seconds="false" format24="true"></vc:timer>
+</p>
