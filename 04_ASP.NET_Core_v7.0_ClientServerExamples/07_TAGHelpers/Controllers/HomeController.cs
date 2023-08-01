@@ -44,4 +44,7 @@ public class HomeController : Controller {
 
     // Управление стилями / цветом
     public IActionResult MyStyle() => View();
+
+    // Tag-хелперы и модели
+    public IActionResult ListObjects() => View();
 }
