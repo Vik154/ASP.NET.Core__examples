@@ -1,0 +1,13 @@
+﻿@using _08_VIEW_COMPONENTS.Infrostructure
+@addTagHelper *, 08_VIEW_COMPONENTS
+
+@{
+    Person Tom = new("Tom", 26);
+    Person Bob = new("Bob", 43);
+}
+<p>
+    @await Component.InvokeAsync("PersonInfo", new {person = Tom})
+</p>
+<p>
+    <vc:person-info person="Bob"></vc:person-info>
+</p>

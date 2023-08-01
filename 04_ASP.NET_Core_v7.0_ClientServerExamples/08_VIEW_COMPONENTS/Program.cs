@@ -7,8 +7,14 @@ public class Program {
         var app = builder.Build();
 
         app.MapControllerRoute(
+            name: "PersonSample", 
+            pattern: "{controller=Home}/{action=TestPersonComponent}");
+          
+        /*
+        app.MapControllerRoute(
             name: "TimerSample", 
             pattern: "{controller=Home}/{action=TestTimerComponent}");
+        */
 
         app.Run();
     }
