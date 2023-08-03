@@ -48,7 +48,7 @@ public class HomeController : Controller {
         if (id != null) {
             User? user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
             if (user != null)
-                return View("user");
+                return View(user);
         }
         return NotFound();
     }
