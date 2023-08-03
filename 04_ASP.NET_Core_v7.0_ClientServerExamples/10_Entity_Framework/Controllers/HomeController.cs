@@ -48,4 +48,23 @@ public class HomeController : Controller {
         };
         return View(await users.AsNoTracking().ToListAsync());
     }
+
+    // Сортировка на основе тег-хелпера
+    public async Task<IActionResult> THIndex(SortState sortOrder = SortState.NameAsc) {
+        IQueryable<User> users = db.Users.Include(x => x.company);
+
+        users = sortOrder switch {
+            SortState.NameDesc    => users.OrderByDescending(s => s.Name),
+            SortState.AgeAsc      => users.OrderBy(s => s.Age),
+            SortState.AgeDesc     => users.OrderByDescending(s => s.Age),
+            SortState.CompanyAsc  => users.OrderBy(s => s.company!.Name),
+            SortState.CompanyDesc => users.OrderByDescending(s => s.company!.Name),
+            _ => users.OrderBy(s => s.Name),
+        };
+        IndexViewModel viewModel = new IndexViewModel {
+            Users = await users.AsNoTracking().ToListAsync(),
+            SortViewModel = new SortViewModel(sortOrder)
+        };
+        return View(viewModel);
+    }
 }
