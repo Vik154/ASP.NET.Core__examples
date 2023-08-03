@@ -1,4 +1,4 @@
-﻿namespace _10_Entity_Framework.Models;
+﻿namespace _11_Entity_Framework.Models;
 
 public class User {
     public int Id { get; set; }
