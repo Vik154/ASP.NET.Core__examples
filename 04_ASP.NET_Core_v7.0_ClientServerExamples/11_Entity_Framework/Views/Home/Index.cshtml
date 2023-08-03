@@ -1,0 +1,32 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model _11_Entity_Framework.Models.UserListViewModel
+
+<h2>Каталог пользователей</h2>
+
+<form method="get">
+    <div>
+        <label>Имя: </label>
+        <input asp-for="Name" />
+
+        <label>Компания: </label>
+        <select name="company" asp-items="Model.Companies"></select>
+
+        <input type="submit" value="Фильтр" />
+    </div>
+</form>
+
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Возраст</th>
+        <th>Компания</th>
+    </tr>
+
+    @foreach (var item in Model.Users) {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Age</td>
+            <td>@item.company?.Name</td>
+        </tr>
+    }
+</table>
