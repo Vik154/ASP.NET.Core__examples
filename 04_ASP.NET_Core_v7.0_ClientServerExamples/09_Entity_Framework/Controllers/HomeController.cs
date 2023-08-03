@@ -26,4 +26,40 @@ public class HomeController : Controller {
         await db.SaveChangesAsync();        // выполняет это выражение, тем самым добавляя данные в базу данных
         return RedirectToAction("Index");
     }
+
+    // Удаление объекта (метод Delete обрабатывает только запросы типа POST)
+    // с помощью параметра id получаем удаляемый объект из БД
+    [HttpPost]
+    public async Task<IActionResult> Delete(int? id) {
+        if (id != null) {
+            User? user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+            if (user != null) {
+                db.Users.Remove(user);              // Данный метод генерирует sql-выражение DELETE
+                await db.SaveChangesAsync();        // выполняется вызовом db.SaveChangesAsync()
+                return RedirectToAction("Index");
+            }
+        }
+        return NotFound();
+    }
+
+    // Редактирование объектов
+    // GET-версия метода Edit возвращает форму с данными объекта, которые пользователь может отредактировать
+    public async Task<IActionResult> Edit(int? id) {
+        if (id != null) {
+            User? user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+            if (user != null)
+                return View("user");
+        }
+        return NotFound();
+    }
+
+    // А post-версия Edit получает отредактированные данные в виде объекта user и с помощью метода
+    // db.Users.Update(user) для этих данных будет генерироваться sql-выражение UPDATE,
+    // которое будет выполнено вызовом db.SaveChangesAsync()
+    [HttpPost]
+    public async Task<IActionResult> Edit(User user) {
+        db.Users.Update(user);
+        await db.SaveChangesAsync();
+        return RedirectToAction("Index");
+    }
 }
