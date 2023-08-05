@@ -6,9 +6,14 @@ public class Program {
         var builder = WebApplication.CreateBuilder(args);
         var app = builder.Build();
 
-        // Use - Передача обработки запроса следующим компонетам конвеера middleware
-        app.Use(_01_MiddlewareUse.Step3);
-        app.Run(_01_MiddlewareUse.Step4);
+        // 02 - UseWhen / MapWhen создание ветки конвеера middleware
+        // app.MapWhen(_02_MiddlewareUseWhen.Step1, _02_MiddlewareUseWhen.Step2);
+        // app.UseWhen(_02_MiddlewareUseWhen.Step1, _02_MiddlewareUseWhen.Step2);
+        // app.Run(_02_MiddlewareUseWhen.Step3);
+
+        // 01 - Use - Передача обработки запроса следующим компонетам конвеера middleware
+        // app.Use(_01_MiddlewareUse.Step3);
+        // app.Run(_01_MiddlewareUse.Step4);
         // app.Use(_01_MiddlewareUse.Step1);
         // app.Run(_01_MiddlewareUse.Step2);
 
