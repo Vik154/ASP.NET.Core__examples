@@ -1,3 +1,5 @@
+using _01_BASE_CONCEPT.Services;
+
 namespace _01_BASE_CONCEPT;
 
 public class Program {
@@ -5,7 +7,7 @@ public class Program {
         var builder = WebApplication.CreateBuilder(args);
         var app = builder.Build();
 
-        app.MapGet("/", () => "Hello World!");
+        app.Run(SenderForm.SendHtmlForm);
 
         app.Run();
     }
