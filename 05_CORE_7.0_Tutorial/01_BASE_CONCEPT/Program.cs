@@ -6,6 +6,12 @@ public class Program {
         var builder = WebApplication.CreateBuilder(args);
         var app = builder.Build();
 
+        // 03 - Map создание ветки конвейра которая будет обрабатывать запросы по указанному пути
+        app.Map("/time", _03_MiddlewareMap.Step1);
+        app.Map("/About", ap => ap.Run(async ct => await ct.Response.WriteAsync("About")));
+        app.Map("/Index", ap => ap.Run(async ct => await ct.Response.WriteAsync("Index")));
+        app.Run(async ct => await ct.Response.WriteAsync("Hello Timer"));
+
         // 02 - UseWhen / MapWhen создание ветки конвеера middleware
         // app.MapWhen(_02_MiddlewareUseWhen.Step1, _02_MiddlewareUseWhen.Step2);
         // app.UseWhen(_02_MiddlewareUseWhen.Step1, _02_MiddlewareUseWhen.Step2);
