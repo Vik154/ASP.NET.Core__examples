@@ -6,11 +6,19 @@ public class Program {
         var builder = WebApplication.CreateBuilder(args);
         // var app = builder.Build();
 
+        // 06 - Множественная регистрация сервисов, с общей зависимостью
+        var valueStorage = new ValueStorage();
+        builder.Services.AddSingleton<IGenerator>(valueStorage);
+        builder.Services.AddSingleton<IReader>(valueStorage);
+        var app = builder.Build();
+        app.UseMiddleware<GeneratorMiddleware>();
+        app.UseMiddleware<ReaderMiddleware>();
+
         // 05 - Уравление жизненным циклом сервисов.
         // AddSingleton создает один объект для всех последующих запросов,
         // при этом объект создается только тогда, когда он непосредственно необходим
-        builder.Services.AddSingleton<ICounter, RandomCounter>();
-        builder.Services.AddSingleton<CounterService>();
+        // builder.Services.AddSingleton<ICounter, RandomCounter>();
+        // builder.Services.AddSingleton<CounterService>();
 
         // AddScoped создает один экземпляр объекта для всего запроса
         // builder.Services.AddScoped<ICounter, RandomCounter>();
@@ -19,8 +27,8 @@ public class Program {
         // AddTransient() создает transient-объекты. Такие объекты создаются при каждом обращении к ним
         // builder.Services.AddTransient<ICounter, RandomCounter>();
         // builder.Services.AddTransient<CounterService>();
-        var app = builder.Build();
-        app.UseMiddleware<CounterMiddleware>();
+        // var app = builder.Build();
+        // app.UseMiddleware<CounterMiddleware>();
 
         // 04 - Middleware в классах
         // Для добавления компонента middleware, который представляет класс,
