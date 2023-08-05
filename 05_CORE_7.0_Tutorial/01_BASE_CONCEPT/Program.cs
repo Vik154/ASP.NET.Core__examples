@@ -4,13 +4,29 @@ namespace _01_BASE_CONCEPT;
 public class Program {
     public static void Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
+        // var app = builder.Build();
+
+        // 05 - Уравление жизненным циклом сервисов.
+        // AddSingleton создает один объект для всех последующих запросов,
+        // при этом объект создается только тогда, когда он непосредственно необходим
+        builder.Services.AddSingleton<ICounter, RandomCounter>();
+        builder.Services.AddSingleton<CounterService>();
+
+        // AddScoped создает один экземпляр объекта для всего запроса
+        // builder.Services.AddScoped<ICounter, RandomCounter>();
+        // builder.Services.AddScoped<CounterService>();
+
+        // AddTransient() создает transient-объекты. Такие объекты создаются при каждом обращении к ним
+        // builder.Services.AddTransient<ICounter, RandomCounter>();
+        // builder.Services.AddTransient<CounterService>();
         var app = builder.Build();
+        app.UseMiddleware<CounterMiddleware>();
 
         // 04 - Middleware в классах
         // Для добавления компонента middleware, который представляет класс,
         // в конвейер обработки запроса применяется метод UseMiddleware().
-        app.UseMiddleware<_04_MiddlewareClass>();
-        app.Run(async context => await context.Response.WriteAsync("Hello"));
+        // app.UseMiddleware<_04_MiddlewareClass>();
+        // app.Run(async context => await context.Response.WriteAsync("Hello"));
 
         // 03 - Map создание ветки конвейра которая будет обрабатывать запросы по указанному пути
         // app.Map("/time", _03_MiddlewareMap.Step1);
@@ -31,7 +47,12 @@ public class Program {
 
         // 01 - Отправка форм
         // app.Run(SenderForm.SendHtmlForm);
-
+        // <----> Одно и тоже
+        /*app.Run(async context => {
+            context.Response.ContentType = "text/html";
+            await context.Response.SendFileAsync("html/htmlpage.html");
+        });
+        */
         app.Run();
     }
 }
