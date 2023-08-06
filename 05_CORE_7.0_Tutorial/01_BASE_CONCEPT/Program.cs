@@ -1,4 +1,6 @@
 using _01_BASE_CONCEPT.Services;
+using System.Text;
+
 namespace _01_BASE_CONCEPT;
 
 public class Program {
@@ -6,13 +8,62 @@ public class Program {
         var builder = WebApplication.CreateBuilder(args);
         // var app = builder.Build();
 
-        // 06 - ћножественна€ регистраци€ сервисов, с общей зависимостью
-        var valueStorage = new ValueStorage();
-        builder.Services.AddSingleton<IGenerator>(valueStorage);
-        builder.Services.AddSingleton<IReader>(valueStorage);
+        /*** 07 -  онечные точки и ограничени€ маршрутов ***/
+        // проецируем класс SecretCodeConstraint на inline-ограничение secretcode
+        builder.Services.Configure<RouteOptions>(options =>
+                        options.ConstraintMap.Add("secretcode", typeof(SecretCodeConstraint)));
+        
+        // альтернативное добавление класса ограничени€
+        // builder.Services.AddRouting(options => options.ConstraintMap.Add("secretcode", typeof(SecretConstraint)));
         var app = builder.Build();
-        app.UseMiddleware<GeneratorMiddleware>();
-        app.UseMiddleware<ReaderMiddleware>();
+        app.Map("/users/{name}/{token:secretcode(123466)}/",
+            (string name, int token) => $"Name: {name} \nToken: {token}");
+
+        app.Map("/", () => "Index Page");
+
+
+        // MyMaps.SetMaps(ref app);
+        // MyMaps.ShowMaps();
+
+        /*
+        app.Map("/", () => "Index page");
+        app.Map("/about", () => "About page");
+        app.Map("/html", async (context) => {
+            context.Response.ContentType = "text/html";
+            await context.Response.SendFileAsync("html/htmlpage.html"); });
+        app.Map("/test", async (context) => await context.Response.WriteAsync("test"));
+
+        app.MapGet("/routes", (IEnumerable<EndpointDataSource> endpoints) => {
+            // string.Join("\n", endpoints.SelectMany(e => e.Endpoints));
+            var sb = new StringBuilder();
+            var endpoints_ = endpoints.SelectMany(es => es.Endpoints);
+            foreach (var endpoint in endpoints_) {
+                sb.AppendLine(endpoint.DisplayName);
+
+                // получим конечную точку как RouteEndpoint
+                if (endpoint is RouteEndpoint routeEndpoint) {
+                    sb.AppendLine(routeEndpoint.RoutePattern.RawText);
+                }
+
+                // получение метаданных
+                // данные маршрутизации
+                // var routeNameMetadata = endpoint.Metadata.OfType<Microsoft.AspNetCore.Routing.RouteNameMetadata>().FirstOrDefault();
+                // var routeName = routeNameMetadata?.RouteName;
+                // данные http - поддерживаемые типы запросов
+                //var httpMethodsMetadata = endpoint.Metadata.OfType<HttpMethodMetadata>().FirstOrDefault();
+                //var httpMethods = httpMethodsMetadata?.HttpMethods; // [GET, POST, ...]
+            }
+            return sb.ToString();
+        });
+        */
+
+        // 06 - ћножественна€ регистраци€ сервисов, с общей зависимостью
+        // var valueStorage = new ValueStorage();
+        // builder.Services.AddSingleton<IGenerator>(valueStorage);
+        // builder.Services.AddSingleton<IReader>(valueStorage);
+        // var app = builder.Build();
+        // app.UseMiddleware<GeneratorMiddleware>();
+        // app.UseMiddleware<ReaderMiddleware>();
 
         // 05 - ”равление жизненным циклом сервисов.
         // AddSingleton создает один объект дл€ всех последующих запросов,
