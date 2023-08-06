@@ -6,20 +6,43 @@ namespace _01_BASE_CONCEPT;
 public class Program {
     public static void Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
-        // var app = builder.Build();
+        var app = builder.Build();
+
+        /*** 08 - Анализ конфигурации ***/
+        builder.Configuration.AddJsonFile("json/person.json");
+        var tom = new Person();
+        app.Configuration.Bind(tom);
+        app.Run(async (context) => {
+            context.Response.ContentType = "text/html; charset=utf-8";
+            string name = $"<p>Name: {tom.Name}</p>";
+            string age = $"<p>Age: {tom.Age}</p>";
+            string company = $"<p>Company: {tom.Company?.Title}</p>";
+            string langs = "<p>Languages:</p><ul>";
+            foreach (var lang in tom.Languages) {
+                langs += $"<li><p>{lang}</p></li>";
+            }
+            langs += "</ul>";
+            await context.Response.WriteAsync($"{name}{age}{company}{langs}");
+        });
+        app.Run();
+        
+        // builder.Configuration.AddJsonFile("json/configanalysis.json");
+        // app.Map("/", (IConfiguration conf) => {
+        //    SectionContent.GetSectionContent(conf.GetSection("projectConfig")); });
+        // app.Run();
 
         /*** 07 - Конечные точки и ограничения маршрутов ***/
         // проецируем класс SecretCodeConstraint на inline-ограничение secretcode
-        builder.Services.Configure<RouteOptions>(options =>
-                        options.ConstraintMap.Add("secretcode", typeof(SecretCodeConstraint)));
-        
+        // builder.Services.Configure<RouteOptions>(options =>
+        //                 options.ConstraintMap.Add("secretcode", typeof(SecretCodeConstraint)));
+
         // альтернативное добавление класса ограничения
         // builder.Services.AddRouting(options => options.ConstraintMap.Add("secretcode", typeof(SecretConstraint)));
-        var app = builder.Build();
-        app.Map("/users/{name}/{token:secretcode(123466)}/",
-            (string name, int token) => $"Name: {name} \nToken: {token}");
+        // var app = builder.Build();
+        // app.Map("/users/{name}/{token:secretcode(123466)}/",
+        //    (string name, int token) => $"Name: {name} \nToken: {token}");
 
-        app.Map("/", () => "Index Page");
+        // app.Map("/", () => "Index Page");
 
 
         // MyMaps.SetMaps(ref app);
@@ -112,7 +135,7 @@ public class Program {
             await context.Response.SendFileAsync("html/htmlpage.html");
         });
         */
-        app.Run();
+        // app.Run();
     }
 }
 
