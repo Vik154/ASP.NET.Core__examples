@@ -1,0 +1,18 @@
+﻿@page
+@model _02_RAZOR_PAGES.Pages.IndexModel
+@{
+
+}
+
+@* GET - запрос *@
+<h2>@Model.Message</h2>
+<h3>Time: @Model.PrintTime()</h3>
+
+@* Получение строки запроса из страницы razor*@
+@functions{
+    public string Msg { get; set; } = "";
+    public void OnGet(string name = "Tom") {
+        Msg = $"Name: {name}";
+    }
+}
+<h2>Message: @Msg</h2>
