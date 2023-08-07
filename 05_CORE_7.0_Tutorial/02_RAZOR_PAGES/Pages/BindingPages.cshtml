@@ -1,0 +1,25 @@
+﻿@page "/binding/{id?}/{info?}/{num?}"
+@model _02_RAZOR_PAGES.Pages.BindingPagesModel
+
+<h2>Введите данные:</h2>
+<form method="post">
+    <p>
+        <label>Имя:</label> <br/>
+        <input type="text" name="name" />
+    </p>
+    <p>
+        <label>Возраст:</label> <br/>
+        <input type="number" name="age" />
+    </p>
+    <input type="submit" value="отправить" />
+</form>
+
+@if (Request.Method == "POST") {
+    <h3>Полученные данные</h3>
+    <p>Name: @Model.Name</p>
+    <p>Age:  @Model.Age</p>
+}
+
+<h2>ID: @Model.Id</h2>
+<h2>Info: @Model.Info</h2>
+<h2>Num: @Model.Num</h2>
