@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace _02_RAZOR_PAGES.Pages;
 
 
-public class IndexModel : PageModel {
+public class GetRequestModel : PageModel {
     public string Message { get; private set; } = "";
 
     // public IndexModel() => Message = "Hello World";
