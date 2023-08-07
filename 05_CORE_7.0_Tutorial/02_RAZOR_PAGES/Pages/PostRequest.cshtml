@@ -1,6 +1,45 @@
 ﻿@page "/post"
 @model _02_RAZOR_PAGES.Pages.PostRequestModel
-@{
+
+
+<h2>@Model.Message</h2>
+<form method="post">
+    <input type="text" name="name" />
+    <input type="submit" value="Отправить" />
+</form>
+
+@* Логика внутри страницы *@
+@functions{
+    public string Msg { get; private set; } = "";
+    public void OnGet() => Msg = "Введите имя: ";
+    public void OnPost(string name) => Msg = $"Привет {name}!";
 }
 
-<h2>HELLO POST</h2>
+<h2>@Msg</h2>
+<form method="post">
+    <input type="text" name="name" />
+    <input type="submit" value="Отправить" />
+</form>
+
+@* ----------------------------------------------------------------- *@
+<h2>Ввeдите столицы стран</h2>
+<form method="post">
+    <p> Германия: <input type="text" name="items[germany]" /> </p>
+    <p> Франция: <input type="text" name="items[france]" /> </p>
+    <p> Испания: <input type="text" name="items[spain]" /> </p>
+    <input type="submit" value="Отправить" />
+</form>
+
+@functions {
+    Dictionary<string, string> Countries { get; set; } = new();
+    public void OnPost(Dictionary<string, string> items) {
+        Countries = items;
+    }
+}
+
+<h3>Страны и их столицы</h3>
+<ul>
+    @foreach (var country in Countries) {
+        <li>@country.Key - @country.Value</li>
+    }
+</ul>
