@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_BASE_CONCEPT", "01_BASE_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_RAZOR_PAGES", "02_RAZOR_PAGES\02_RAZOR_PAGES.csproj", "{88FF72D1-9F07-4307-B39B-4D17AA091051}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_BLAZOR_BASE", "03_BLAZOR_BASE\03_BLAZOR_BASE.csproj", "{5DD86AA9-1BB3-4738-AB4D-4321EE810635}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{88FF72D1-9F07-4307-B39B-4D17AA091051}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88FF72D1-9F07-4307-B39B-4D17AA091051}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88FF72D1-9F07-4307-B39B-4D17AA091051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DD86AA9-1BB3-4738-AB4D-4321EE810635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD86AA9-1BB3-4738-AB4D-4321EE810635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD86AA9-1BB3-4738-AB4D-4321EE810635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD86AA9-1BB3-4738-AB4D-4321EE810635}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
