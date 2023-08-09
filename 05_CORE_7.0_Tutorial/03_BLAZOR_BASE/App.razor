@@ -1,5 +1,25 @@
-﻿@using Microsoft.AspNetCore.Components.Web      @* Для обраюотчиков событий *@
+﻿
+@using Microsoft.AspNetCore.Components.Web      @* Для обраюотчиков событий *@
+@using Microsoft.AspNetCore.Components.Routing  @* Для работы с маршрутами *@
 @using _03_BLAZOR_BASE.Components               @* Вложенные компоненты *@
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>METANIT.COM</title>
+    <base href="/" /> <!-- для работы маршрутизации-->
+</head>
+
+
+@* Маршрутизаця *@
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" />
+    </Found>
+    <NotFound>
+        <p>Page Not Found</p>
+    </NotFound>
+</Router>
 
 @* Отображение вложенных компонентов *@
 <h1>Home Component</h1>
