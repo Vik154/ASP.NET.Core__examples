@@ -20,3 +20,19 @@
     [Parameter]
     public int Count { get; set; }
 }
+
+@* --- Передача содержимого из родительского в дочерний компонент --- *@
+<h2>@Title</h2>
+<div>@ChildContent</div>
+<hr />
+<div>Условный футер</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    // Согласно условностям свойство должно называться именно ChildContent,
+    // и оно должно представлять тип RenderFragment.
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
