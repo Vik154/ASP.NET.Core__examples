@@ -20,6 +20,9 @@
     *@
     <component type="typeof(App)" render-mode="ServerPrerendered" />
 
+    @* Или так *@
+    @* @(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered)) *@
+
     @* "_framework/blazor.server.js". Это автогенерируемый скрипт *@
     <script src="_framework/blazor.server.js"></script>
 </body>
