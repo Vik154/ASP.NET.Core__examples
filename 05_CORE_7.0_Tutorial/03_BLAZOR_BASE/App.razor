@@ -1,4 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Components.Web      @* Для обраюотчиков событий *@
+@using _03_BLAZOR_BASE.Components               @* Вложенные компоненты *@
+
+@* Отображение вложенных компонентов *@
+<h1>Home Component</h1>
+<Home></Home>
+
+<Home Count="@users.Count" Users="@users"></Home>
+
+@code {
+    List<string> users = new List<string> { "Tom", "Bob", "Sam", "Mike" };
+}
 
 <h1>HelloWorld.com</h1>
 <h2>Первое приложение на blazor</h2>

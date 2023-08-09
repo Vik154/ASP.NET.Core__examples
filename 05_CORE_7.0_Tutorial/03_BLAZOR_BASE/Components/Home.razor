@@ -1,0 +1,22 @@
+﻿<h1>Component Home</h1>
+<h2>@header</h2>
+
+@code {
+    string header = "Страница Home";
+}
+
+<h2>Количество пользователей: @Count</h2>
+<ul>
+    @foreach (var user in Users) {
+        <li>@user</li>
+    }
+</ul>
+
+@code {
+
+    [Parameter]
+    public List<string> Users { get; set; } = new();
+
+    [Parameter]
+    public int Count { get; set; }
+}
