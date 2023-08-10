@@ -1,7 +1,13 @@
-﻿namespace _01_MongoDB {
-    internal class Program {
-        static void Main(string[] args) {
-            Console.WriteLine("Hello, World!");
-        }
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+
+namespace _01_MongoDB;
+
+internal class Program {
+
+    static async Task Main(string[] args) {
+
+        // Базовые концепции MongoDB
+        await _01_BASE.ShowResult();
     }
 }
