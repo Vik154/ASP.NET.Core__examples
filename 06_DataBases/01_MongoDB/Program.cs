@@ -7,8 +7,14 @@ internal class Program {
 
     static async Task Main(string[] args) {
 
+        // Примеры замены отдельных частей документа
+        await DocReader.TestReader.ShowUpdate();
+
+        // Пример замены документа
+        // await DocReader.TestReader.ShowResult();
+
         // Пример группировки
-        await Projection.TestProj.ShowGroup();
+        // await Projection.TestProj.ShowGroup();
 
         // Пример проекции
         // await Projection.TestProj.ShowRes();
