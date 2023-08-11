@@ -7,8 +7,14 @@ internal class Program {
 
     static async Task Main(string[] args) {
 
+        // Пример группировки
+        await Projection.TestProj.ShowGroup();
+
+        // Пример проекции
+        // await Projection.TestProj.ShowRes();
+
         // Пример сортировки
-        await DataFilter.TestFilter.SortBson();
+        // await DataFilter.TestFilter.SortBson();
 
         // Пример поиска в БД по фильтрам
         // await DataFilter.TestFilter.ShowResult();
